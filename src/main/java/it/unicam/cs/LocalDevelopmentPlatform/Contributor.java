@@ -1,9 +1,13 @@
 package it.unicam.cs.LocalDevelopmentPlatform;
 
-public abstract class Turista implements Utente {
+public class Contributor implements Utente{
 
     @Override
     public boolean caricaContenuto() {
+        return false;
+    }
+
+    public boolean creaItinerario(){
         return false;
     }
 
@@ -17,9 +21,8 @@ public abstract class Turista implements Utente {
         return new PuntoDiInteresse[0];
     }
 
+    @Override
     public boolean segnalaContenuto(int ID) {
         return false;
     }
-
-
 }
