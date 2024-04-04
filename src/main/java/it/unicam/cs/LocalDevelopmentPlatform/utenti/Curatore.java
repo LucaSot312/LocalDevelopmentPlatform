@@ -1,13 +1,11 @@
-package it.unicam.cs.LocalDevelopmentPlatform;
+package it.unicam.cs.LocalDevelopmentPlatform.utenti;
 
-public class Contributor implements Utente{
+import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
+
+public class Curatore implements Utente {
 
     @Override
     public boolean caricaContenuto() {
-        return false;
-    }
-
-    public boolean creaItinerario(){
         return false;
     }
 

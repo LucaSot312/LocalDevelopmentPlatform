@@ -1,4 +1,4 @@
-package it.unicam.cs.LocalDevelopmentPlatform;
+package it.unicam.cs.LocalDevelopmentPlatform.luoghi;
 
 public enum TipologiaPunto {
     MONUMENTO,

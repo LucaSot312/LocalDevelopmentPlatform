@@ -1,4 +1,4 @@
-package it.unicam.cs.LocalDevelopmentPlatform;
+package it.unicam.cs.LocalDevelopmentPlatform.utenti;
 
 public enum Ruolo {
     TURISTA,

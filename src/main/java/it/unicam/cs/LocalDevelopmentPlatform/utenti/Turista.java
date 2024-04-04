@@ -1,4 +1,6 @@
-package it.unicam.cs.LocalDevelopmentPlatform;
+package it.unicam.cs.LocalDevelopmentPlatform.utenti;
+
+import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 
 public abstract class Turista implements Utente {
 

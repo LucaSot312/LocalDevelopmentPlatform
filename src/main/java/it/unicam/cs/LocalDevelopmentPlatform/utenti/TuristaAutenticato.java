@@ -1,6 +1,8 @@
-package it.unicam.cs.LocalDevelopmentPlatform;
+package it.unicam.cs.LocalDevelopmentPlatform.utenti;
 
-public class TuristaAutenticato extends Turista{
+import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
+
+public class TuristaAutenticato extends Turista {
 
     public boolean creaItinerario(){
         return false;
