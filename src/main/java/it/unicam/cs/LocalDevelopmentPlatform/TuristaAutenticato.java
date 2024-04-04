@@ -1,8 +1,28 @@
 package it.unicam.cs.LocalDevelopmentPlatform;
 
 public class TuristaAutenticato extends Turista{
+
+    public boolean creaItinerario(){
+        return false;
+    }
+
     @Override
-    public boolean inserisciContenuto() {
-        return super.inserisciContenuto();
+    public boolean caricaContenuto() {
+        return super.caricaContenuto();
+    }
+
+    @Override
+    public PuntoDiInteresse consultaContenuto(int ID) {
+        return super.consultaContenuto(ID);
+    }
+
+    @Override
+    public PuntoDiInteresse[] consultaItinierario(int ID) {
+        return super.consultaItinierario(ID);
+    }
+
+    @Override
+    public boolean segnalaContenuto(int ID) {
+        return super.segnalaContenuto(ID);
     }
 }
