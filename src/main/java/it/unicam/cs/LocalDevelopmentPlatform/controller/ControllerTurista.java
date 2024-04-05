@@ -1,15 +1,46 @@
 package it.unicam.cs.LocalDevelopmentPlatform.controller;
 
+import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
+import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
+import it.unicam.cs.LocalDevelopmentPlatform.service.TuristaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("")
-public class Controller {
-    // Example GET endpoint
-    @GetMapping("/example")
-    public String getExample() {
-        return "This is an example GET request";
+public class ControllerTurista {
+
+    private final TuristaService turistaService;
+
+    @Autowired
+    public ControllerTurista(TuristaService turistaService) {
+        this.turistaService = turistaService;
     }
+
+    // Example GET endpoint
+    @GetMapping("")
+    public List<PuntoDiInteresse> getAllPunti() {
+        return turistaService.getAllPunti();
+    }
+
+    @GetMapping("/{id}")
+    public PuntoDiInteresse getPuntoById(@PathVariable int id) {
+        return turistaService.getPuntoByID(id);
+    }
+
+    @GetMapping("/itinerario")
+    public List<Itinerario> getAllItinerari() {
+        return turistaService.getAllItinerari();
+    }
+
+    @GetMapping("/{id}")
+    public Itinerario getItinerarioByID(@PathVariable int id) {
+        return turistaService.getItinerarioByID(id);
+    }
+
+
 
     // Example POST endpoint with request body
     @PostMapping("/example")
