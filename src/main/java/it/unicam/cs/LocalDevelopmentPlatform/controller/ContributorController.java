@@ -17,7 +17,7 @@ public class ContributorController {
 
     @Autowired
     private final ContributorService contributorService;
-    public ContributorController(Contributor contributor, ContributorService contributorService) {
+    public ContributorController(ContributorService contributorService) {
         this.contributorService = contributorService;
     }
     
