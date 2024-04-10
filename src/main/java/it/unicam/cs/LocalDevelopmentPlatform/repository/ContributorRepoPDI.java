@@ -4,6 +4,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 
-public interface ContributorRepo extends MongoRepository<PuntoDiInteresse,Integer> {
+public interface ContributorRepoPDI extends MongoRepository<PuntoDiInteresse,Integer> {
 
 }
