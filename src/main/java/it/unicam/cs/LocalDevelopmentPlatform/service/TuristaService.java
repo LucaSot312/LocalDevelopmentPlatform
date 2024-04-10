@@ -11,20 +11,21 @@ import java.util.List;
 @Service
 public class TuristaService{
 
-
     private final TuristaRepo turistaRepo;
 
     @Autowired
-    public TuristaService(TuristaRepo userRepo) {
-        this.turistaRepo = userRepo;
+    public TuristaService(TuristaRepo turistaRepo) {
+        this.turistaRepo = turistaRepo;
     }
 
     public List<PuntoDiInteresse> getAllPunti() {
         return turistaRepo.findAll();
+        //TODO after JPA
     }
 
     public PuntoDiInteresse getPuntoByID(int id) {
-        return turistaRepo.findById(id).orElse(null);
+        return null;
+        //TODO after JPA
     }
 
     public List<Itinerario> getAllItinerari() {

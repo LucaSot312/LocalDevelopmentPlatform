@@ -26,7 +26,7 @@ public class TuristaController {
         return turistaService.getAllPunti();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/punto/{id}")
     public PuntoDiInteresse getPuntoById(@PathVariable int id) {
         return turistaService.getPuntoByID(id);
     }
@@ -36,7 +36,7 @@ public class TuristaController {
         return turistaService.getAllItinerari();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/itinerario/{id}")
     public Itinerario getItinerarioByID(@PathVariable int id) {
         return turistaService.getItinerarioByID(id);
     }
