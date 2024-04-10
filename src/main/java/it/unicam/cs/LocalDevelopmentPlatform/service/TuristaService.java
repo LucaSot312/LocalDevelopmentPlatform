@@ -2,42 +2,36 @@ package it.unicam.cs.LocalDevelopmentPlatform.service;
 
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
-import it.unicam.cs.LocalDevelopmentPlatform.repository.UserRepo;
+import it.unicam.cs.LocalDevelopmentPlatform.repository.TuristaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class TuristaService implements service {
+public class TuristaService{
 
 
-    private final UserRepo userRepo;
+    private final TuristaRepo turistaRepo;
 
     @Autowired
-    public TuristaService(UserRepo userRepo) {
-        this.userRepo = userRepo;
+    public TuristaService(TuristaRepo userRepo) {
+        this.turistaRepo = userRepo;
     }
 
-    @Override
     public List<PuntoDiInteresse> getAllPunti() {
-        return userRepo.findAll();
-        //TODO after JPA
+        return turistaRepo.findAll();
     }
 
-    @Override
     public PuntoDiInteresse getPuntoByID(int id) {
-        return null;
-        //TODO after JPA
+        return turistaRepo.findById(id).orElse(null);
     }
 
-    @Override
     public List<Itinerario> getAllItinerari() {
         return null;
         //TODO after JPA
     }
 
-    @Override
     public Itinerario getItinerarioByID(int id) {
         return null;
         //TODO after JPA

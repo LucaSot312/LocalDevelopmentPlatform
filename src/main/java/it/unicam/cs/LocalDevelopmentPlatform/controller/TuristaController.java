@@ -10,13 +10,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("")
-public class ControllerTurista {
+public class TuristaController {
 
     private final TuristaService turistaService;
 
     @Autowired
-    public ControllerTurista(TuristaService turistaService) {
+    public TuristaController(TuristaService turistaService) {
         this.turistaService = turistaService;
+    
     }
 
     // Example GET endpoint
