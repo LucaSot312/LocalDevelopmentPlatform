@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
 
 @Service
-public interface ContributorRepoIT extends MongoRepository<Itinerario, Integer>{
+public interface ItinerarioRepo extends MongoRepository<Itinerario, Integer>{
     
 }

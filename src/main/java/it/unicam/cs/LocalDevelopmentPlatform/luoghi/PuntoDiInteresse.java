@@ -1,10 +1,15 @@
 package it.unicam.cs.LocalDevelopmentPlatform.luoghi;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Objects;
-
+@Document("PuntoDiInteresse")
 public class PuntoDiInteresse {
-
+    @Id
     private final int id;
+
     private final Coordinata coordinata;
     private String nome;
     private TipologiaPunto tipologia;
