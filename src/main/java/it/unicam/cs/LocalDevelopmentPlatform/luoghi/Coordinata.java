@@ -2,19 +2,19 @@ package it.unicam.cs.LocalDevelopmentPlatform.luoghi;
 
 public class Coordinata {
 
-    private double x;
-    private double y;
+    private double latitudine;
+    private double longitudine;
 
-    public double getX() {
-        return x;
+    public double getLatitudine() {
+        return latitudine;
     }
-    public double getY() {
-        return y;
+    public double getLongitudine() {
+        return longitudine;
     }
 
-    public Coordinata(double x, double y) {
-        this.x = x;
-        this.y = y;
+    public Coordinata(double latitudine, double longitudine) {
+        this.latitudine = latitudine;
+        this.longitudine = longitudine;
     }
 }
 

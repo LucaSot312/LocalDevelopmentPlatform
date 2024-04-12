@@ -5,12 +5,13 @@ import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoInteresseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("turista")
+@RequestMapping("")
 public class TuristaController {
 
     private final PuntoInteresseService puntoInteresseService;
@@ -42,6 +43,9 @@ public class TuristaController {
     public Itinerario getItinerarioByID(@PathVariable int id) {
         return itinerarioService.getItinerarioById(id);
     }
+
+    @PostMapping("/caricaPunto")
+    public void caricaPunto(@RequestBody PuntoDiInteresse puntoDiInteresse){puntoInteresseService.savePunto(puntoDiInteresse);}
 
     // Example POST endpoint with request body
 }

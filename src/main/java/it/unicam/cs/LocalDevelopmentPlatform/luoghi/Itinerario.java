@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Objects;
 import java.util.Vector;
 
-@Document("Itinerario")
+@Document(collection= "Itinerario")
 public class Itinerario {
     @Id
     private int id;

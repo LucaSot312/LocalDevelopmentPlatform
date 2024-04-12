@@ -1,16 +1,15 @@
 package it.unicam.cs.LocalDevelopmentPlatform.luoghi;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
-@Document("PuntoDiInteresse")
+@Document(collection = "PuntoDiInteresse")
 public class PuntoDiInteresse {
     @Id
-    private final int id;
+    private int _id;
 
-    private final Coordinata coordinata;
+    private Coordinata coordinata;
     private String nome;
     private TipologiaPunto tipologia;
     private boolean verificato;
@@ -25,23 +24,36 @@ public class PuntoDiInteresse {
         return verificato == that.verificato && segnalato == that.segnalato && Objects.equals(coordinata, that.coordinata) && Objects.equals(nome, that.nome) && tipologia == that.tipologia && Objects.equals(descrizione, that.descrizione) && Objects.equals(motivoSegnalazione, that.motivoSegnalazione);
     }
 
+    public PuntoDiInteresse(Coordinata coordinata, String nome, TipologiaPunto tipologia, boolean verificato, boolean segnalato, String descrizione, String motivoSegnalazione) {
+        this.coordinata = coordinata;
+        this.nome = nome;
+        this.tipologia = tipologia;
+        this.verificato = verificato;
+        this.segnalato = segnalato;
+        this.descrizione = descrizione;
+        this.motivoSegnalazione = motivoSegnalazione;
+        this._id=this.hashCode();
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(coordinata, nome, tipologia);
     }
 
-    public PuntoDiInteresse(int x, int y, String nome, TipologiaPunto tipologia, String descrizione) {
-        this.coordinata = new Coordinata(x,y);
-        this.nome = nome;
-        this.tipologia = tipologia;
-        this.verificato =false;
-        this.segnalato = false;
-        this.descrizione = descrizione;
-        this.id=hashCode();
+    public int get_id() {
+        return _id;
     }
 
-    public int getId() {
-        return id;
+    public void set_id(int _id) {
+        this._id = _id;
+    }
+
+    public void setCoordinata(Coordinata coordinata) {
+        this.coordinata = coordinata;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Coordinata getCoordinata() {
