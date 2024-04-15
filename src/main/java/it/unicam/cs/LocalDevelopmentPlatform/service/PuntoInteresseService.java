@@ -1,8 +1,6 @@
 package it.unicam.cs.LocalDevelopmentPlatform.service;
 
-import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
-import it.unicam.cs.LocalDevelopmentPlatform.repository.ItinerarioRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.PuntoDiInteresseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

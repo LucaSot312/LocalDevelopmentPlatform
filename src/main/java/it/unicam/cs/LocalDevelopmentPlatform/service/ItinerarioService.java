@@ -22,7 +22,7 @@ public class ItinerarioService {
     public List<Itinerario> getAllItinerari(){
         return itinerarioRepo.findAll();
     }
-    public void savePunto(Itinerario itinerario) {
+    public void saveItinerario(Itinerario itinerario) {
         itinerarioRepo.save(itinerario);
     }
 
