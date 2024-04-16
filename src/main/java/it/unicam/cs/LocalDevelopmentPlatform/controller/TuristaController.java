@@ -13,8 +13,8 @@ import java.util.List;
 @RequestMapping("")
 public class TuristaController {
 
-    private final PuntoInteresseService puntoInteresseService;
-    private final ItinerarioService itinerarioService;
+    protected final PuntoInteresseService puntoInteresseService;
+    protected final ItinerarioService itinerarioService;
 
     @Autowired
     public TuristaController(PuntoInteresseService puntoInteresseService, ItinerarioService itinerarioService) {
@@ -23,7 +23,7 @@ public class TuristaController {
     }
 
     // Example GET endpoint
-    @GetMapping("/fetch")
+    @GetMapping("/punti")
     public List<PuntoDiInteresse> getAllPunti() {
         return puntoInteresseService.getAllPunti();
     }
@@ -33,18 +33,17 @@ public class TuristaController {
         return puntoInteresseService.getPuntoByID(id);
     }
 
-    @GetMapping("/itinerario")
+    @GetMapping("/itinerari")
     public List<Itinerario> getAllItinerari() {
         return itinerarioService.getAllItinerari();
     }
 
     @GetMapping("/itinerario/{id}")
-    public Itinerario getItinerarioByID(@PathVariable int id) {
-        return itinerarioService.getItinerarioById(id);
+    public List<PuntoDiInteresse> getItinerarioByID(@PathVariable int id) {
+        return itinerarioService.getPuntiItinerario(id);
+        //TODO se rimane tempo implementiamo un nuovo oggetto per far vedere nome e descrizione dell itinerario quando
+        // fetchamo dal database
     }
 
-    @PostMapping("/caricaPunto")
-    public void caricaPunto(@RequestBody PuntoDiInteresse puntoDiInteresse){puntoInteresseService.savePunto(puntoDiInteresse);}
 
-    // Example POST endpoint with request body
 }

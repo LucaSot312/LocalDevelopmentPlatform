@@ -33,6 +33,10 @@ public class ContributorController {
         return puntoInteresseService.getPuntoByID(id);
     }
 
+    @PostMapping("/caricaPunto")
+    public void caricaPunto(@RequestBody PuntoDiInteresse puntoDiInteresse){
+        puntoInteresseService.savePunto(puntoDiInteresse);}
+
     @GetMapping("/itinerario")
     public List<Itinerario> getAllItinerari() {
         return itinerarioService.getAllItinerari();
@@ -42,6 +46,7 @@ public class ContributorController {
     public Itinerario getItinerarioByID(@PathVariable int id) {
         return itinerarioService.getItinerarioById(id);
     }
+
     @PostMapping("/caricaItinerario")
     public void caricaItinerario(@RequestBody Itinerario itinerario){itinerarioService.saveItinerario(itinerario);}
 
