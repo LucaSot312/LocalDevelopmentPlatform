@@ -29,4 +29,11 @@ public class PuntoInteresseService {
     public void savePunto(PuntoDiInteresse puntoDiInteresse) {
         puntoDiInteresseRepo.save(puntoDiInteresse);
     }
+    public void deletePunto(int id){puntoDiInteresseRepo.deleteById(id);}
+
+    public List<PuntoDiInteresse> getAllNotVerified() {
+        return puntoDiInteresseRepo.findAllFalse();
+    }
+
+
 }

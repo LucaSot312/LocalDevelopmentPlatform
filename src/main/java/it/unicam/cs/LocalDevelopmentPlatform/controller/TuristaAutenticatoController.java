@@ -14,9 +14,9 @@ public class TuristaAutenticatoController extends TuristaController{
         super(puntoInteresseService, itinerarioService);
     }
 
-    @PostMapping("/caricaPunto")
-    public void caricaPunto(@RequestBody PuntoDiInteresse puntoDiInteresse){
-        super.puntoInteresseService.savePunto(puntoDiInteresse);}
+//    @PostMapping("/caricaPunto")
+//    public void caricaPunto(@RequestBody PuntoDiInteresse puntoDiInteresse){
+//        super.puntoInteresseService.savePunto(puntoDiInteresse);}
 
     @PostMapping("/caricaItinerario")
     public void caricaItinerario(@RequestBody Itinerario itinerario){itinerarioService.saveItinerario(itinerario);}

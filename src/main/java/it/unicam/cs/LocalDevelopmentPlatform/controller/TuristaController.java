@@ -26,6 +26,7 @@ public class TuristaController {
     @GetMapping("/punti")
     public List<PuntoDiInteresse> getAllPunti() {
         return puntoInteresseService.getAllPunti();
+
     }
 
     @GetMapping("/punto/{id}")
