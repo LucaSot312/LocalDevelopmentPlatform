@@ -9,6 +9,6 @@ import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
 
 @Service
 public interface ItinerarioRepo extends MongoRepository<Itinerario, Integer>{
-    @Query("{ 'id' : ?0 }")
+    @Query("{ '_id' : ?0 }")
     Itinerario findById(int id);
 }
