@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PuntoDiInteresseRepo extends MongoRepository<PuntoDiInteresse, java.lang.Integer> {
 
-    @Query("{ 'id' : ?0 }")
+    @Query("{ '_id' : ?0 }")
     PuntoDiInteresse findById(int id);
 
     @Query("{verificato : true}")
@@ -17,8 +17,5 @@ public interface PuntoDiInteresseRepo extends MongoRepository<PuntoDiInteresse, 
 
     @Query("{verificato : false}")
     List<PuntoDiInteresse> findAllFalse();
-
-
-
 
 }

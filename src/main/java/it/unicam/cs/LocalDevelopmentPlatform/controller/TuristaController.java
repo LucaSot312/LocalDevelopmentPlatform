@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("")
@@ -24,10 +25,7 @@ public class TuristaController {
 
     // Example GET endpoint
     @GetMapping("/punti")
-    public List<PuntoDiInteresse> getAllPunti() {
-        return puntoInteresseService.getAllPunti();
-
-    }
+    public List<PuntoDiInteresse> getAllPunti() { return puntoInteresseService.getAllPunti(); }
 
     @GetMapping("/punto/{id}")
     public PuntoDiInteresse getPuntoById(@PathVariable int id) {
@@ -42,9 +40,8 @@ public class TuristaController {
     @GetMapping("/itinerario/{id}")
     public List<PuntoDiInteresse> getItinerarioByID(@PathVariable int id) {
         return itinerarioService.getPuntiItinerario(id);
-        //TODO se rimane tempo implementiamo un nuovo oggetto per far vedere nome e descrizione dell itinerario quando
-        // fetchamo dal database
+
+        //TODO se rimane tempo implementiamo un nuovo oggetto atto a far vedere nome e descrizione dell itinerario
+        // quando fetchamo dal database
     }
-
-
 }

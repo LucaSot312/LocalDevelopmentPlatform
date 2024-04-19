@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PuntoInteresseService {
@@ -29,11 +30,17 @@ public class PuntoInteresseService {
     public void savePunto(PuntoDiInteresse puntoDiInteresse) {
         puntoDiInteresseRepo.save(puntoDiInteresse);
     }
+
     public void deletePunto(int id){puntoDiInteresseRepo.deleteById(id);}
 
     public List<PuntoDiInteresse> getAllNotVerified() {
         return puntoDiInteresseRepo.findAllFalse();
     }
 
-
+    public void verificaPunto(int id) {
+        PuntoDiInteresse daVer = puntoDiInteresseRepo.findById(id);
+        daVer.setVerificato(true);
+        puntoDiInteresseRepo.deleteById(id);
+        puntoDiInteresseRepo.save(daVer);
+    }
 }

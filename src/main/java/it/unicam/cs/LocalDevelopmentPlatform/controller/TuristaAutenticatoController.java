@@ -1,7 +1,6 @@
 package it.unicam.cs.LocalDevelopmentPlatform.controller;
 
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
-import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoInteresseService;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +13,16 @@ public class TuristaAutenticatoController extends TuristaController{
         super(puntoInteresseService, itinerarioService);
     }
 
-//    @PostMapping("/caricaPunto")
-//    public void caricaPunto(@RequestBody PuntoDiInteresse puntoDiInteresse){
-//        super.puntoInteresseService.savePunto(puntoDiInteresse);}
-
     @PostMapping("/caricaItinerario")
     public void caricaItinerario(@RequestBody Itinerario itinerario){itinerarioService.saveItinerario(itinerario);}
+
+    // TODO sezione profilazione, o anche no volendo
+
+    //TODO metodo salva punto nel profilo
+
+    //TODO metodo get tutti i punti salvati
+
+    //TODO metodo salva itinerario
+
+    //TODO metodo get tutti gli itinerari salvati
 }

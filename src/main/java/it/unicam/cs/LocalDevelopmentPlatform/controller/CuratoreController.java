@@ -21,4 +21,7 @@ public class CuratoreController extends TuristaController{
 
     @GetMapping("/nonVerificati")
     public List<PuntoDiInteresse> getAllNotVerified(){return puntoInteresseService.getAllNotVerified();}
+
+    @PutMapping("/verificaPunto/{id}")
+    public void verificaPunto(@PathVariable int id){puntoInteresseService.verificaPunto(id); }
 }
