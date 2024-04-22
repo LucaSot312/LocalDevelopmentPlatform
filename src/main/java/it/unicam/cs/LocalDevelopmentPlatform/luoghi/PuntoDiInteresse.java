@@ -4,6 +4,7 @@ import jakarta.persistence.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
+
 @Document(collection = "PuntoDiInteresse")
 public class PuntoDiInteresse {
     @Id
@@ -21,39 +22,39 @@ public class PuntoDiInteresse {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof PuntoDiInteresse that)) return false;
-        return verificato == that.verificato && segnalato == that.segnalato && Objects.equals(coordinata, that.coordinata) && Objects.equals(nome, that.nome) && tipologia == that.tipologia && Objects.equals(descrizione, that.descrizione) && Objects.equals(motivoSegnalazione, that.motivoSegnalazione);
+        return verificato == that.verificato && segnalato == that.segnalato && Objects.equals(coordinata, that.coordinata)
+                && Objects.equals(nome, that.nome) && tipologia == that.tipologia && Objects.equals(descrizione, that.descrizione)
+                && Objects.equals(motivoSegnalazione, that.motivoSegnalazione);
     }
 
-    public PuntoDiInteresse(Coordinata coordinata, String nome, TipologiaPunto tipologia, boolean verificato, boolean segnalato, String descrizione, String motivoSegnalazione) {
+    public PuntoDiInteresse(Coordinata coordinata, String nome, TipologiaPunto tipologia, String descrizione) {
+        //TODO bisogna vedere come mai il deserializzatore bypassi totalmente questo costruttore quando va a creare un'istanza
+        // e quindi si può fare injection e forzare il campo a true del verificato e del segnalato.
         this.coordinata = coordinata;
         this.nome = nome;
         this.tipologia = tipologia;
-        this.verificato = verificato;
-        this.segnalato = segnalato;
         this.descrizione = descrizione;
-        this.motivoSegnalazione = motivoSegnalazione;
-        this._id=this.hashCode();
+        this.setMotivoSegnalazione(null);
+        this.setVerificato(false);
+        this.setSegnalato(false);
+        this._id = this.hashCode();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(coordinata, nome, tipologia);
+        return Math.abs(Objects.hash(coordinata, nome, tipologia, descrizione));
     }
 
     public int get_id() {
         return _id;
     }
 
-    public void set_id(int _id) {
-        this._id = _id;
+    public void setSegnalato(boolean segnalato) {
+        this.segnalato = segnalato;
     }
 
-    public void setCoordinata(Coordinata coordinata) {
-        this.coordinata = coordinata;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setVerificato(boolean verificato) {
+        this.verificato = verificato;
     }
 
     public Coordinata getCoordinata() {
@@ -68,32 +69,16 @@ public class PuntoDiInteresse {
         return tipologia;
     }
 
-    public void setTipologia(TipologiaPunto tipologia) {
-        this.tipologia = tipologia;
-    }
+    public boolean isVerificato() {return verificato; }
 
-    public boolean isVerificato() {
-        return verificato;
-    }
+    public void verifica(){ this.verificato = true; }
 
-    public void setVerificato(boolean verificato) {
-        this.verificato = verificato;
-    }
+    public boolean isSegnalato() {return segnalato; }
 
-    public boolean isSegnalato() {
-        return segnalato;
-    }
-
-    public void setSegnalato(boolean segnalato) {
-        this.segnalato = segnalato;
-    }
+    public void segnala(){ this.segnalato= true; }
 
     public String getDescrizione() {
         return descrizione;
-    }
-
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
     }
 
     public String getMotivoSegnalazione() {

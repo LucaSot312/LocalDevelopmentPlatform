@@ -45,4 +45,6 @@ public class ItinerarioService {
             }
             return puntiDiInteresse;
         }
+
+    public void deleteItinerario(int id) { puntoDiInteresseRepo.deleteById(id); }
 }

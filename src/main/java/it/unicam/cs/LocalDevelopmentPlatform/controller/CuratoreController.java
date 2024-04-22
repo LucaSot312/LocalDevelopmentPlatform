@@ -19,6 +19,9 @@ public class CuratoreController extends TuristaController{
         puntoInteresseService.deletePunto(id);
     };
 
+    @PutMapping("/eliminaItinerario/{id}")
+    public void eliminaItinerario(@PathVariable int id){itinerarioService.deleteItinerario(id);}
+
     @GetMapping("/nonVerificati")
     public List<PuntoDiInteresse> getAllNotVerified(){return puntoInteresseService.getAllNotVerified();}
 

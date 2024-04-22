@@ -39,7 +39,7 @@ public class PuntoInteresseService {
 
     public void verificaPunto(int id) {
         PuntoDiInteresse daVer = puntoDiInteresseRepo.findById(id);
-        daVer.setVerificato(true);
+        daVer.verifica();
         puntoDiInteresseRepo.deleteById(id);
         puntoDiInteresseRepo.save(daVer);
     }

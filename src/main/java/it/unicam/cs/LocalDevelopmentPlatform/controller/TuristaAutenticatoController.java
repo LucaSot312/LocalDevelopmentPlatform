@@ -6,7 +6,7 @@ import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoInteresseService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/authTurista")
+@RequestMapping("authTurista")
 public class TuristaAutenticatoController extends TuristaController{
 
     public TuristaAutenticatoController(PuntoInteresseService puntoInteresseService, ItinerarioService itinerarioService, ItinerarioService itinerarioService1, PuntoInteresseService puntoInteresseService1) {
