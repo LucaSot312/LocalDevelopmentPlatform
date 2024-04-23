@@ -23,7 +23,6 @@ public class TuristaController {
         this.itinerarioService = itinerarioService;
     }
 
-    // Example GET endpoint
     @GetMapping("/punti")
     public List<PuntoDiInteresse> getAllPunti() { return puntoInteresseService.getAllPunti(); }
 

@@ -3,14 +3,13 @@ package it.unicam.cs.LocalDevelopmentPlatform.utenti;
 import jakarta.persistence.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
 @Document(collection = "Utenti")
-public class User implements UserDetails{
+public class User {
     @Id
     private int _id;
     private final String username;
@@ -36,38 +35,16 @@ public class User implements UserDetails{
         return Math.abs(Objects.hash(getUsername(), getPassword(), ruolo));
     }
 
-    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
     }
 
-    @Override
     public String getPassword() {
         return "";
     }
 
-    @Override
     public String getUsername() {
         return "";
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
 }

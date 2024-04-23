@@ -3,7 +3,6 @@ package it.unicam.cs.LocalDevelopmentPlatform.repository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
-
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
 
 @Repository
