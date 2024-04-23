@@ -2,21 +2,19 @@ package it.unicam.cs.LocalDevelopmentPlatform.utenti;
 
 import jakarta.persistence.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.core.GrantedAuthority;
 
-import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 
 @Document(collection = "Utenti")
 public class User {
     @Id
     private int _id;
+
     private final String username;
     private final String password;
     private final Ruolo ruolo;
 
-    public User(Utente user, String username, String password, Ruolo ruolo) {
+    public User(String username, String password, Ruolo ruolo) {
         this.username = username;
         this.password = password;
         this.ruolo = ruolo;
@@ -35,16 +33,23 @@ public class User {
         return Math.abs(Objects.hash(getUsername(), getPassword(), ruolo));
     }
 
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
-        return "";
+        return password;
     }
 
-    public String getUsername() {
-        return "";
+    public Ruolo getRuolo() {
+        return ruolo;
     }
 
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
+    }
 }

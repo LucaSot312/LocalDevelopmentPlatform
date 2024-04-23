@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("authTurista")
 public class TuristaAutenticatoController extends TuristaController{
 
-    public TuristaAutenticatoController(PuntoInteresseService puntoInteresseService, ItinerarioService itinerarioService, ItinerarioService itinerarioService1, PuntoInteresseService puntoInteresseService1) {
+    public TuristaAutenticatoController(PuntoInteresseService puntoInteresseService, ItinerarioService itinerarioService) {
         super(puntoInteresseService, itinerarioService);
     }
 

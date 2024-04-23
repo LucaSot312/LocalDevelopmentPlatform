@@ -1,6 +1,5 @@
 package it.unicam.cs.LocalDevelopmentPlatform.controller;
 
-import it.unicam.cs.LocalDevelopmentPlatform.repository.UserRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.service.UserService;
 import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ public class AdminController {
     private final UserService userService;
 
     @Autowired
-    public AdminController(UserService userService, UserRepo userRepo) {
+    public AdminController(UserService userService) {
         this.userService = userService;
     }
 
