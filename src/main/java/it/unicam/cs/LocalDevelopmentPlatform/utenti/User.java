@@ -3,6 +3,7 @@ package it.unicam.cs.LocalDevelopmentPlatform.utenti;
 import jakarta.persistence.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 @Document(collection = "Utenti")
@@ -13,11 +14,15 @@ public class User {
     private final String username;
     private final String password;
     private final Ruolo ruolo;
+    private ArrayList<Integer> idPuntiDiInteresse;
+    private ArrayList<Integer> idItinerari;
 
     public User(String username, String password, Ruolo ruolo) {
         this.username = username;
         this.password = password;
         this.ruolo = ruolo;
+        this.idPuntiDiInteresse=new ArrayList<>();
+        this.idItinerari=new ArrayList<>();
         this._id = this.hashCode();
     }
 
@@ -51,5 +56,21 @@ public class User {
 
     public void set_id(int _id) {
         this._id = _id;
+    }
+
+    public ArrayList<Integer> getIdPuntiDiInteresse() {
+        return idPuntiDiInteresse;
+    }
+
+    public void setIdPuntiDiInteresse(ArrayList<Integer> idPuntiDiInteresse) {
+        this.idPuntiDiInteresse = idPuntiDiInteresse;
+    }
+
+    public ArrayList<Integer> getIdItinerari() {
+        return idItinerari;
+    }
+
+    public void setIdItinerari(ArrayList<Integer> idItinerari) {
+        this.idItinerari = idItinerari;
     }
 }

@@ -22,6 +22,8 @@ public class PuntoInteresseService {
         return puntoDiInteresseRepo.findAll();
     }
 
+    public List<PuntoDiInteresse> getAllPuntiById(List<Integer> punti){return puntoDiInteresseRepo.findAllById(punti);}
+
     public PuntoDiInteresse getPuntoByID(int id) {
         return puntoDiInteresseRepo.findById(id);
     }
