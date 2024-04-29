@@ -39,13 +39,10 @@ public class TuristaController {
     @GetMapping("/itinerario/{id}")
     public List<PuntoDiInteresse> getItinerarioByID(@PathVariable int id) {
         return itinerarioService.getPuntiItinerario(id);
-
-        //TODO se rimane tempo implementiamo un nuovo oggetto atto a far vedere nome e descrizione dell itinerario
-        // quando fetchamo dal database
     }
 
-    @PutMapping("/segnalaPunto/{id}")
-    public void segnalaPunto(@PathVariable int id, @RequestBody String motivo){
+    @PutMapping("/segnalaPunto/{id}/{motivo}")
+    public void segnalaPunto(@PathVariable int id, @PathVariable String motivo){
         puntoInteresseService.segnalaPunto(id,motivo);
     }
 }

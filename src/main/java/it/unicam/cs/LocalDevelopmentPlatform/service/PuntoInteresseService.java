@@ -31,7 +31,10 @@ public class PuntoInteresseService {
     public void deletePunto(int id){puntoDiInteresseRepo.deleteById(id);}
 
     public void segnalaPunto(int id, String motivo) {
-        puntoDiInteresseRepo.findById(id).segnala(motivo);
+        PuntoDiInteresse temp=puntoDiInteresseRepo.findById(id);
+        puntoDiInteresseRepo.deleteById(id);
+        temp.segnala(motivo);
+        puntoDiInteresseRepo.save(temp);
     }
 
     public List<PuntoDiInteresse> getSegnalati() {
@@ -39,6 +42,9 @@ public class PuntoInteresseService {
     }
 
     public void removeSegnalato(int id) {
-        puntoDiInteresseRepo.findById(id).removeSegnalato();
+        PuntoDiInteresse temp=puntoDiInteresseRepo.findById(id);
+        puntoDiInteresseRepo.deleteById(id);
+        temp.removeSegnalato();
+        puntoDiInteresseRepo.save(temp);
     }
 }

@@ -2,19 +2,20 @@ package it.unicam.cs.LocalDevelopmentPlatform.utenti;
 
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 
-public abstract class Turista implements Utente {
+public class Turista extends User {
 
-    @Override
+    public Turista(String username, String password, Ruolo ruolo) {
+        super(username, password, ruolo);
+    }
+
     public boolean caricaContenuto() {
         return false;
     }
 
-    @Override
     public PuntoDiInteresse consultaContenuto(int ID) {
         return null;
     }
 
-    @Override
     public PuntoDiInteresse[] consultaItinierario(int ID) {
         return new PuntoDiInteresse[0];
     }

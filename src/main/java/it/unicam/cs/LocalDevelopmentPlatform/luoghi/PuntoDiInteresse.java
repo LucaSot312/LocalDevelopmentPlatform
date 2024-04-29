@@ -26,19 +26,17 @@ public class PuntoDiInteresse extends BufferPunti {
     }
 
     public void segnala(String motivo){
-        this.motivoSegnalazione = motivo;
+        this.motivoSegnalazione = this.motivoSegnalazione.concat(motivo+";");
         this.setSegnalato(true);
     }
 
     public void removeSegnalato(){
-        this.segnalato = false;
+        this.setSegnalato(false);
         this.motivoSegnalazione = "";
     }
     public boolean isVerificato() {return verificato; }
 
     public boolean isSegnalato() {return segnalato; }
-
-    public void segnala(){ this.segnalato= true; }
 
     public String getMotivoSegnalazione() {
         return motivoSegnalazione;

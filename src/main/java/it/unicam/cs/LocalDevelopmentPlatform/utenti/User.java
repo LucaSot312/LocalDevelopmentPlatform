@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 @Document(collection = "Utenti")
-public class User {
+public class User{
     @Id
     private int _id;
 

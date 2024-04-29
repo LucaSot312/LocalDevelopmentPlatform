@@ -9,15 +9,16 @@ import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 
 import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
 
+
 @RestController
 @RequestMapping("contributor")
 public class ContributorController extends TuristaController {
 
-    private final BufferPuntiService bufferPuntiService;
-
+    BufferPuntiService bufferPuntiService;
     public ContributorController(PuntoInteresseService puntoInteresseService, ItinerarioService itinerarioService, BufferPuntiService bufferPuntiService) {
         super(puntoInteresseService, itinerarioService);
-        this.bufferPuntiService = bufferPuntiService;
+        this.bufferPuntiService=bufferPuntiService;
+
     }
 
     @PostMapping(value = "/caricaPunto")

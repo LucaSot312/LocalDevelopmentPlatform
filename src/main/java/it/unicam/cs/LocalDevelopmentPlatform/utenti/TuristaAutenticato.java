@@ -4,8 +4,8 @@ import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 
 public class TuristaAutenticato extends Turista {
 
-    public boolean creaItinerario(){
-        return false;
+    public TuristaAutenticato(String username, String password, Ruolo ruolo) {
+        super(username, password, ruolo);
     }
 
     @Override
