@@ -28,20 +28,17 @@ public class PuntoInteresseService {
         return puntoDiInteresseRepo.findById(id);
     }
 
-    public void savePunto(PuntoDiInteresse puntoDiInteresse) {
-        puntoDiInteresseRepo.save(puntoDiInteresse);
-    }
-
     public void deletePunto(int id){puntoDiInteresseRepo.deleteById(id);}
 
-    public List<PuntoDiInteresse> getAllNotVerified() {
-        return puntoDiInteresseRepo.findAllFalse();
+    public void segnalaPunto(int id, String motivo) {
+        puntoDiInteresseRepo.findById(id).segnala(motivo);
     }
 
-    public void verificaPunto(int id) {
-        PuntoDiInteresse daVer = puntoDiInteresseRepo.findById(id);
-        daVer.verifica();
-        puntoDiInteresseRepo.deleteById(id);
-        puntoDiInteresseRepo.save(daVer);
+    public List<PuntoDiInteresse> getSegnalati() {
+        return puntoDiInteresseRepo.allSegnalati();
+    }
+
+    public void removeSegnalato(int id) {
+        puntoDiInteresseRepo.findById(id).removeSegnalato();
     }
 }

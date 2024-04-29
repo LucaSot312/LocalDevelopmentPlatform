@@ -43,4 +43,9 @@ public class TuristaController {
         //TODO se rimane tempo implementiamo un nuovo oggetto atto a far vedere nome e descrizione dell itinerario
         // quando fetchamo dal database
     }
+
+    @PutMapping("/segnalaPunto/{id}")
+    public void segnalaPunto(@PathVariable int id, @RequestBody String motivo){
+        puntoInteresseService.segnalaPunto(id,motivo);
+    }
 }

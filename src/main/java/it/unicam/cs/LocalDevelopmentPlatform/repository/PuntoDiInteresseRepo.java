@@ -13,11 +13,7 @@ public interface PuntoDiInteresseRepo extends MongoRepository<PuntoDiInteresse, 
     @Query("{ '_id' : ?0 }")
     PuntoDiInteresse findById(int id);
 
-    @Query("{verificato : true}")
-    @Override
-    List<PuntoDiInteresse> findAll();
-
-    @Query("{verificato : false}")
-    List<PuntoDiInteresse> findAllFalse();
+    @Query("{segnalato : true}")
+    List<PuntoDiInteresse> allSegnalati();
 
 }
