@@ -1,6 +1,5 @@
 package it.unicam.cs.LocalDevelopmentPlatform.service;
 
-import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.ItinerarioRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.PuntoDiInteresseRepo;
@@ -40,13 +39,7 @@ public class UserService{
     public List<User> findAll() {return userRepo.findAll(); }
 
     public List<PuntoDiInteresse> mieiPunti(int id) {
-//        List<PuntoDiInteresse> mieiPunti = new ArrayList<PuntoDiInteresse>();
         List<Integer> listaPunti = (userRepo.findById(id)).getIdPuntiDiInteresse();
-//        for(Integer i : listaPunti){
-//            PuntoDiInteresse punto = puntoDiInteresseRepo.findById(i).orElseThrow(() ->
-//                    new RuntimeException("punto di interesse non trovato"));
-//            mieiPunti.add(punto);
-//        }
         return puntoDiInteresseRepo.findAllById(listaPunti);
     }
 

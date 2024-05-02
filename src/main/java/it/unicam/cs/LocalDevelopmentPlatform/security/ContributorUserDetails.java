@@ -1,6 +1,5 @@
 package it.unicam.cs.LocalDevelopmentPlatform.security;
 
-import it.unicam.cs.LocalDevelopmentPlatform.utenti.TuristaAutenticato;
 import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,21 +8,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
-public class TuristaAuthUserDetails implements UserDetails {
-    private final User turistaAutenticato;
+public class ContributorUserDetails implements UserDetails {
+    private final User contributor;
 
-    public TuristaAuthUserDetails(User turistaAutenticato) {
-        this.turistaAutenticato = turistaAutenticato;
+    public ContributorUserDetails(User contributor) {
+        this.contributor = contributor;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority("TURISTA"));
+        return Collections.singletonList(new SimpleGrantedAuthority("CONTRIBUTOR"));
     }
 
     @Override
     public String getPassword() {
-        return turistaAutenticato.getPassword();
+        return "";
     }
 
     @Override

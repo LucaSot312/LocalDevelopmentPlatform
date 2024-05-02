@@ -5,12 +5,14 @@ import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 import it.unicam.cs.LocalDevelopmentPlatform.service.BufferPuntiService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoInteresseService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("curatore")
+@PreAuthorize("hasRole('CURATORE')")
 public class CuratoreController extends TuristaController{
 
     private final BufferPuntiService bufferPuntiService;

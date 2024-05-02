@@ -5,12 +5,14 @@ import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoInteresseService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("authTurista")
+@RequestMapping("turista")
+@PreAuthorize("hasRole('TURISTA')")
 public class TuristaAutenticatoController extends TuristaController{
 
     private final UserService userService;

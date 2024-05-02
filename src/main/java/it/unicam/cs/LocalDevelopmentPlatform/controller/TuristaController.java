@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/home")
 public class TuristaController {
 
     protected final PuntoInteresseService puntoInteresseService;
