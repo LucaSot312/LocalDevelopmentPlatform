@@ -5,13 +5,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
 import java.util.Vector;
-
+/*
+Entity class per la rappresentazione di un Itinerario
+ */
 @Document(collection= "Itinerario")
 public class Itinerario {
     @Id
     private int id;
 
     private String nome;
+    /*
+    In questo caso un itinerario viene rappresentato come un vettore degli id dei punti di interesse che lo compongono
+     */
     private Vector<Integer> itinerario;
     private String  descrizione;
 

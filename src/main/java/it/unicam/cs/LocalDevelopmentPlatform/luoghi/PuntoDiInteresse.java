@@ -1,10 +1,11 @@
 package it.unicam.cs.LocalDevelopmentPlatform.luoghi;
 
 import org.springframework.data.mongodb.core.mapping.Document;
-
+/*
+Entity class per la rappresentazione di un punto di interesse verificato
+ */
 @Document(collection = "PuntoDiInteresse")
 public class PuntoDiInteresse extends BufferPunti {
-
     private boolean verificato;
     private boolean segnalato;
     private String motivoSegnalazione;

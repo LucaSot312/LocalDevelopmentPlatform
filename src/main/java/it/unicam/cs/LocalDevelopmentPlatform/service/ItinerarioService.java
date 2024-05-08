@@ -10,7 +10,10 @@ import it.unicam.cs.LocalDevelopmentPlatform.repository.ItinerarioRepo;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+Classe Service per l'implementazione delle funzionalità relative agli itinerari
+messe a disposizione nel Controller
+ */
 @Service
 public class ItinerarioService {
     private final ItinerarioRepo itinerarioRepo;
@@ -33,7 +36,11 @@ public class ItinerarioService {
     public void saveItinerario(Itinerario itinerario) {
         itinerarioRepo.save(itinerario);
     }
-
+    /*
+    Metodo per ottenere tutti i punti che compongono un itinerario: si ottiene prima l'itinerario tramite il suo id,
+    successivamente si ottiene una lista degli id dei punti che lo compongono e infine per ogni elemento della lista
+    si chiama il metodo findById() che ritorna il punto di interesse in questione
+     */
     public List<PuntoDiInteresse> getPuntiItinerario(int id) {
             Itinerario itinerario = getItinerarioById(id);
             List<Integer> puntiIds = itinerario.getItinerario();

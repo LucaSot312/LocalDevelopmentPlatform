@@ -5,7 +5,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.Objects;
-
+/*
+Classe che rappresenta l'entità User da cui derivano le altre classi che vanno a specializzarla
+ */
 @Document(collection = "Utenti")
 public class User{
     @Id

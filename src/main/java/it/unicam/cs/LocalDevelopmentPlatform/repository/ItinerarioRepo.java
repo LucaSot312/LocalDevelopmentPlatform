@@ -4,7 +4,9 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
-
+/*
+Classe Repository per la gestione degli itinerari
+ */
 @Repository
 public interface ItinerarioRepo extends MongoRepository<Itinerario, Integer>{
     @Query("{ '_id' : ?0 }")

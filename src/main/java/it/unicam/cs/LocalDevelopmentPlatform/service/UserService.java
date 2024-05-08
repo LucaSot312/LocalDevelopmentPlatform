@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+Classe Service per l'implementazione delle funzionalità relative alla gestione degli utenti
+messe a disposizione nel Controller
+ */
 @Service
 public class UserService{
 

@@ -6,11 +6,10 @@ import it.unicam.cs.LocalDevelopmentPlatform.service.BufferPuntiService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoInteresseService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
-
 import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
-
-
+/*
+    Classe controller per la gestione del profilo Contributor
+ */
 @RestController
 @RequestMapping("contributor")
 @PreAuthorize("hasRole('CONTRIBUTOR')")
@@ -22,12 +21,16 @@ public class ContributorController extends TuristaController {
         this.bufferPuntiService=bufferPuntiService;
 
     }
-
+    /*
+    Caricamento di un nuovo punto di interesse in attesa di essere verificato
+     */
     @PostMapping(value = "/caricaPunto")
     public void caricaPunto(@RequestBody BufferPunti punto) {
         bufferPuntiService.savePunto(punto);
     }
-
+    /*
+    Caricamento di un nuovo itinerario
+     */
     @PostMapping("/caricaItinerario")
     public void caricaItinerario(@RequestBody Itinerario itinerario){itinerarioService.saveItinerario(itinerario);}
 }

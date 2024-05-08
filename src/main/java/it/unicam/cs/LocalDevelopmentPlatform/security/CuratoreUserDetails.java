@@ -8,7 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-
+/*
+Classe per l'implementazione della sicurezza del Curatore
+ */
 public class CuratoreUserDetails implements UserDetails {
     private final User curatore;
 

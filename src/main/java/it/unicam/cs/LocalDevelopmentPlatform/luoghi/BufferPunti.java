@@ -4,7 +4,9 @@ import jakarta.persistence.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
-
+/*
+Entity class per la rappresentazione di un punto di interesse appena inserito dall'utente, quindi ancora da verificare
+ */
 @Document(collection = "bufferPunti")
 public class BufferPunti {
     @Id

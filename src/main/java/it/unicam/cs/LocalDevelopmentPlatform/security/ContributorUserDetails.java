@@ -7,7 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-
+/*
+Classe per l'implementazione della sicurezza del Contributor
+ */
 public class ContributorUserDetails implements UserDetails {
     private final User contributor;
 

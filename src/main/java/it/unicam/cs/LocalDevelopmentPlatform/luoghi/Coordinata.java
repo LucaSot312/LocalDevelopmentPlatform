@@ -1,5 +1,7 @@
 package it.unicam.cs.LocalDevelopmentPlatform.luoghi;
-
+/*
+Classe di comodo per rappresentare una coordinata geografica
+ */
 public class Coordinata {
 
     private double latitudine;
