@@ -5,6 +5,7 @@ import it.unicam.cs.LocalDevelopmentPlatform.repository.ContestRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -30,5 +31,19 @@ public class ContestService {
         contestRepo.save(temp);
     }
 
-    //TODO metodo bandisci contest
+    public Contest bandisciContest(Contest contest){
+        contestRepo.save(contest);
+        return contest;
+    }
+
+    public void aggiungiPartecipanti(int idContest, ArrayList<Integer> listaPartecipanti) {
+        Contest temp = getItinerarioById(idContest);
+
+    }
+
+    public void calcolaVincitore(int Idcontest){
+
+    }
+
+
 }

@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Contest {
 
-    @jakarta.persistence.Id
+    @Id
     private int Id;
     private int IdAnimatore;
     private Date dataInizio;
@@ -26,5 +26,6 @@ public class Contest {
     public void addPartecipanti(ArrayList<Integer> listaPartecipanti) {
         this.listaPartecipanti.addAll(listaPartecipanti);
     }
+
 
 }
