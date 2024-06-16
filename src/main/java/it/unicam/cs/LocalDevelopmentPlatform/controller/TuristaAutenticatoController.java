@@ -1,11 +1,12 @@
 package it.unicam.cs.LocalDevelopmentPlatform.controller;
 
+import it.unicam.cs.LocalDevelopmentPlatform.contest.Contest;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
+import it.unicam.cs.LocalDevelopmentPlatform.service.ContestService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoInteresseService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.UserService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,14 +15,15 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("turista")
-@PreAuthorize("hasRole('TURISTA')")
 public class TuristaAutenticatoController extends TuristaController{
 
     private final UserService userService;
+    private final ContestService contestService;
 
-    public TuristaAutenticatoController(PuntoInteresseService puntoInteresseService, ItinerarioService itinerarioService, UserService userService) {
+    public TuristaAutenticatoController(PuntoInteresseService puntoInteresseService, ItinerarioService itinerarioService, UserService userService, ContestService contestService) {
         super(puntoInteresseService, itinerarioService);
         this.userService = userService;
+        this.contestService = contestService;
     }
     /*
     Carica un nuovo itinerario
@@ -48,4 +50,7 @@ public class TuristaAutenticatoController extends TuristaController{
      */
     @GetMapping("/mieiItinierari/{id}")
     public List<PuntoDiInteresse> mieiItinerari(@PathVariable int id){return userService.mieiItinerari(id); }
+
+    @GetMapping("/contest")
+    public List<Contest> contest(){return contestService.allContest();}
 }

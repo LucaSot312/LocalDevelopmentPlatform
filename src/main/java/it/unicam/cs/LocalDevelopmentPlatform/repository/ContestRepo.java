@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface ContestRepo extends MongoRepository<Contest, Integer> {
     @Query("{'_id' : ?0}")
     Contest findById(int id);
+
 }
