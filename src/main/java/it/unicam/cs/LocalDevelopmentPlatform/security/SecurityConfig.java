@@ -30,27 +30,11 @@ public class SecurityConfig{
         http
                 .authorizeRequests()
                 .requestMatchers("/home/**").permitAll()
-                .requestMatchers("/login/**").permitAll()
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/contributor/**").hasRole("CONTRIBUTOR")
-                .requestMatchers("/turista/**").hasRole("TURISTA")
-                .requestMatchers("/curatore/**").hasRole("CURATORE")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin(formLogin -> formLogin
-                        .loginPage("/login")
-                        .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/home")
-                        .failureUrl("/login?error")
-                        .permitAll()
-                )
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/")
-                        .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID")
-                        .permitAll()
-                );
+                .requestMatchers("/admin/**").permitAll()
+                .requestMatchers("/contributor/**").permitAll()
+                .requestMatchers("/turista/**").permitAll()
+                .requestMatchers("/curatore/**").permitAll()
+                .anyRequest().authenticated();
         return http.build();
 
     }

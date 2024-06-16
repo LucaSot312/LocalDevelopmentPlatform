@@ -15,10 +15,11 @@ public class Animatore extends User {
         super(username, password, ruolo);
     }
 
-    /*
+        /*
         Il metodo va a creare un nuovo contest caratterizzato da una data di inizio, una di fine e la lista dei punti di interesse che partecipano al contest
          */
     public Contest bandisciContest(Date inizio, Date fine, List<PuntoDiInteresse> punti){
+
         return null;
     };
     public int determinaVincitore(){
