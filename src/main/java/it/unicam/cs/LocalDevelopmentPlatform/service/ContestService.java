@@ -65,4 +65,12 @@ public class ContestService {
         // e determinare il vincitore
         return null;
     }
+
+    public List<Contest> allContest() {
+        return contestRepo.findAll();
+    }
+
+    public void delContest(int id) {
+        contestRepo.deleteById(id);
+    }
 }
