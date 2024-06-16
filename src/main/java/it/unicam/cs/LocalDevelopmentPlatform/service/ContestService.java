@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+Classe Service per l'implementazione delle funzionalità relative ai contest
+messe a disposizione nel relativo Controller
+ */
 @Service
 public class ContestService {
     private final ContestRepo contestRepo;
@@ -21,15 +24,15 @@ public class ContestService {
         this.userRepo = userRepo;
         this.puntoDiInteresseRepo = puntoDiInteresseRepo;
     }
-
-    public List<Contest> getAllContests() {
-        return contestRepo.findAll();
-    }
-
+    /*
+    Restituisce un contest dato l'id
+     */
     public Contest getContestById(int id) {
         return contestRepo.findById(id);
     }
-
+    /*
+    Metodo per la creazione di un nuovo contest
+     */
     public Contest bandisciContest(Contest contest){
         ArrayList<Integer> listaFiltrUser = contest.getListaPartecipanti();
         ArrayList<Integer> listaFiltrPunti = contest.getListaPunti();
@@ -44,7 +47,9 @@ public class ContestService {
             return contestRepo.save(contest);
         }
     }
-
+/*
+Metodo per l'aggiunta di nuovi partecipanti al contest
+ */
     public Contest aggiungiPartecipanti(int idContest, ArrayList<Integer> listaPartecipanti) {
         listaPartecipanti.removeIf(num -> userRepo.findById(num).isEmpty());
         if(listaPartecipanti.isEmpty()){
@@ -58,18 +63,24 @@ public class ContestService {
             return temp;
         }
     }
-
+/*
+Metodo per determinare il vincitore del contest
+ */
     public User determinaVincitore(int Idcontest){
         //TODO il presente metodo va implementato dopo aver implementato login, sessione
         // e anche il database dei media per poter calcolare chi ha caricato e quanto abbia caricato
         // e determinare il vincitore
         return null;
     }
-
+/*
+Metodo per ottenere tutti i contest attivi
+ */
     public List<Contest> allContest() {
         return contestRepo.findAll();
     }
-
+/*
+Metodo per l'eliminazione di un contest dato l'id
+ */
     public void delContest(int id) {
         contestRepo.deleteById(id);
     }

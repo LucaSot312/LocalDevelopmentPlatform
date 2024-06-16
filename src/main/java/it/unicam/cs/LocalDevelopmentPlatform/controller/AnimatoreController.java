@@ -9,7 +9,9 @@ import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-
+/*
+    Classe controller per la gestione del profilo Animatore
+ */
 @RestController
 @RequestMapping("Animatore")
 public class AnimatoreController extends TuristaController {

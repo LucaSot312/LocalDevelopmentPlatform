@@ -8,15 +8,33 @@ import java.util.Date;
 import java.util.Objects;
 
 @Document(collection="contest")
+/*
+Entity class per rappresentare un oggetto Contest.
+ */
 public class Contest {
 
     @Id
     private int _id;
-
+    /*
+    Id dell'animatore che crea il contest
+     */
     private int IdAnimatore;
+    /*
+    Data di inizio del contest
+     */
     private Date dataInizio;
+
+    /*
+    Data di conclusione del contest
+     */
     private Date dataFine;
+    /*
+    Lista dei punti di interesse che partecipano al contest
+     */
     private ArrayList<Integer> listaPunti;
+    /*
+    Lista dei partecipanti al contest
+     */
     private ArrayList<Integer> listaPartecipanti;
 
     public Contest(Date dataFine, Date dataInizio,
