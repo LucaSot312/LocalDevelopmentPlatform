@@ -33,8 +33,15 @@ public class ItinerarioService {
         return itinerarioRepo.findAll();
     }
 
-    public void saveItinerario(Itinerario itinerario) {
-        itinerarioRepo.save(itinerario);
+    public Itinerario caricaItinerario(Itinerario itinerario) {
+        ArrayList<Integer> listaFiltrata = itinerario.getItinerario();
+        listaFiltrata.removeIf(num -> puntoDiInteresseRepo.findById(num).isEmpty());
+        itinerario.setItinerario(listaFiltrata);
+        if(itinerario.getItinerario().isEmpty()){
+            return null;
+        }
+        else{return itinerarioRepo.save(itinerario);}
+
     }
     /*
     Metodo per ottenere tutti i punti che compongono un itinerario: si ottiene prima l'itinerario tramite il suo id,

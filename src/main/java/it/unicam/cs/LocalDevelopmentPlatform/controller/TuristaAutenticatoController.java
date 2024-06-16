@@ -27,7 +27,7 @@ public class TuristaAutenticatoController extends TuristaController{
     Carica un nuovo itinerario
      */
     @PostMapping("/caricaItinerario")
-    public void caricaItinerario(@RequestBody Itinerario itinerario){itinerarioService.saveItinerario(itinerario); }
+    public Itinerario caricaItinerario(@RequestBody Itinerario itinerario){return itinerarioService.caricaItinerario(itinerario); }
     /*
     Salva un punto di interesse nel profilo utente
      */
