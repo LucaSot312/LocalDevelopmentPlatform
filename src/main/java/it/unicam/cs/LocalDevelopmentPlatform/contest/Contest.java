@@ -27,5 +27,17 @@ public class Contest {
         this.listaPartecipanti.addAll(listaPartecipanti);
     }
 
+    public ArrayList<Integer> getListaPartecipanti() {return listaPartecipanti;}
 
+    public void setListaPartecipanti(ArrayList<Integer> listaPartecipanti) {
+        this.listaPartecipanti = listaPartecipanti;
+    }
+
+    public ArrayList<Integer> getListaPunti() {
+        return listaPunti;
+    }
+
+    public void setListaPunti(ArrayList<Integer> listaPunti) {
+        this.listaPunti = listaPunti;
+    }
 }

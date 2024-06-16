@@ -3,6 +3,7 @@ package it.unicam.cs.LocalDevelopmentPlatform.luoghi;
 import jakarta.persistence.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Vector;
 /*
@@ -17,10 +18,10 @@ public class Itinerario {
     /*
     In questo caso un itinerario viene rappresentato come un vettore degli id dei punti di interesse che lo compongono
      */
-    private Vector<Integer> itinerario;
+    private ArrayList<Integer> itinerario;
     private String  descrizione;
 
-    public Itinerario(String nome, Vector<Integer> itinerario, String descrizione){
+    public Itinerario(String nome, ArrayList<Integer> itinerario, String descrizione){
         this.nome = nome;
         this.id = this.hashCode();
         this.itinerario = itinerario;
@@ -48,11 +49,11 @@ public class Itinerario {
         this.nome = nome;
     }
 
-    public Vector<Integer> getItinerario() {
+    public ArrayList<Integer> getItinerario() {
         return itinerario;
     }
 
-    public void setItinerario(Vector<Integer> itinerario) {
+    public void setItinerario(ArrayList<Integer> itinerario) {
         this.itinerario = itinerario;
     }
 

@@ -32,5 +32,5 @@ public class ContributorController extends TuristaController {
     Caricamento di un nuovo itinerario
      */
     @PostMapping("/caricaItinerario")
-    public void caricaItinerario(@RequestBody Itinerario itinerario){itinerarioService.saveItinerario(itinerario);}
+    public Itinerario caricaItinerario(@RequestBody Itinerario itinerario){return itinerarioService.caricaItinerario(itinerario);}
 }
