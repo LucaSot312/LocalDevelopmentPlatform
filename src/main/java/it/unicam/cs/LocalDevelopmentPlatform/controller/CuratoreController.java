@@ -4,7 +4,7 @@ import it.unicam.cs.LocalDevelopmentPlatform.luoghi.BufferPunti;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 import it.unicam.cs.LocalDevelopmentPlatform.service.BufferPuntiService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
-import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoInteresseService;
+import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoDiInteresseService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,8 +17,8 @@ public class CuratoreController extends TuristaController{
 
     private final BufferPuntiService bufferPuntiService;
 
-    public CuratoreController(PuntoInteresseService puntoInteresseService, ItinerarioService itinerarioService, BufferPuntiService bufferPuntiService) {
-        super(puntoInteresseService, itinerarioService);
+    public CuratoreController(PuntoDiInteresseService puntoDiInteresseService, ItinerarioService itinerarioService, BufferPuntiService bufferPuntiService) {
+        super(puntoDiInteresseService, itinerarioService);
         this.bufferPuntiService = bufferPuntiService;
     }
     /*
@@ -26,7 +26,7 @@ public class CuratoreController extends TuristaController{
      */
     @PutMapping("/eliminaPunto/{id}")
     public void eliminaPunto(@PathVariable int id){
-        puntoInteresseService.deletePunto(id);
+        puntoDiInteresseService.deletePunto(id);
     };
     /*
     Eliminazione di un itinerario tramite id
@@ -52,10 +52,11 @@ public class CuratoreController extends TuristaController{
     Visualizza i punti di interesse segnalati
      */
     @GetMapping("/segnalati")
-    public List<PuntoDiInteresse> segnalati(){return puntoInteresseService.getSegnalati(); }
+    public List<PuntoDiInteresse> segnalati(){return puntoDiInteresseService.getSegnalati(); }
     /*
     Rimuovi la segnalazione di un punto di interesse tramite id
      */
     @PutMapping("/rimuoviSegnalato/{id}")
-    public void rimuoviSegnalato(@PathVariable int id){puntoInteresseService.removeSegnalato(id);}
+    public void rimuoviSegnalato(@PathVariable int id){
+        puntoDiInteresseService.removeSegnalato(id);}
 }

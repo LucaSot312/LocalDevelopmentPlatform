@@ -3,7 +3,7 @@ package it.unicam.cs.LocalDevelopmentPlatform.controller;
 import it.unicam.cs.LocalDevelopmentPlatform.contest.Contest;
 import it.unicam.cs.LocalDevelopmentPlatform.service.ContestService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
-import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoInteresseService;
+import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoDiInteresseService;
 import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +18,10 @@ public class AnimatoreController extends TuristaController {
 
     private final ContestService contestService;
 
-    public AnimatoreController(PuntoInteresseService puntoInteresseService,
+    public AnimatoreController(PuntoDiInteresseService puntoDiInteresseService,
                                ItinerarioService itinerarioService,
                                ContestService contestService) {
-        super(puntoInteresseService, itinerarioService);
+        super(puntoDiInteresseService, itinerarioService);
         this.contestService = contestService;
     }
 

@@ -3,7 +3,7 @@ package it.unicam.cs.LocalDevelopmentPlatform.controller;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.BufferPunti;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
 import it.unicam.cs.LocalDevelopmentPlatform.service.BufferPuntiService;
-import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoInteresseService;
+import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoDiInteresseService;
 import org.springframework.web.bind.annotation.*;
 import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
 /*
@@ -14,8 +14,8 @@ import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
 public class ContributorController extends TuristaController {
 
     BufferPuntiService bufferPuntiService;
-    public ContributorController(PuntoInteresseService puntoInteresseService, ItinerarioService itinerarioService, BufferPuntiService bufferPuntiService) {
-        super(puntoInteresseService, itinerarioService);
+    public ContributorController(PuntoDiInteresseService puntoDiInteresseService, ItinerarioService itinerarioService, BufferPuntiService bufferPuntiService) {
+        super(puntoDiInteresseService, itinerarioService);
         this.bufferPuntiService=bufferPuntiService;
 
     }
