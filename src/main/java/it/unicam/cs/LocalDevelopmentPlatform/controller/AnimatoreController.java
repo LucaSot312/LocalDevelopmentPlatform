@@ -1,9 +1,8 @@
 package it.unicam.cs.LocalDevelopmentPlatform.controller;
 
 import it.unicam.cs.LocalDevelopmentPlatform.contest.Contest;
-import it.unicam.cs.LocalDevelopmentPlatform.service.ContestService;
-import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
-import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoInteresseService;
+import it.unicam.cs.LocalDevelopmentPlatform.service.*;
+import it.unicam.cs.LocalDevelopmentPlatform.utenti.TuristaAutenticato;
 import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 
 import org.springframework.web.bind.annotation.*;
@@ -14,15 +13,20 @@ import java.util.ArrayList;
  */
 @RestController
 @RequestMapping("Animatore")
-public class AnimatoreController extends TuristaController {
+public class AnimatoreController extends TuristaAutenticatoController {
 
     private final ContestService contestService;
 
     public AnimatoreController(PuntoInteresseService puntoInteresseService,
                                ItinerarioService itinerarioService,
-                               ContestService contestService) {
-        super(puntoInteresseService, itinerarioService);
-        this.contestService = contestService;
+                               BufferPuntiService bufferPuntiService,
+                               ContestService contestService,
+                               UserService userService) {
+        super( puntoInteresseService,
+                itinerarioService,
+                userService,
+                contestService
+                );
     }
 
     @PostMapping("/bandisciContest")

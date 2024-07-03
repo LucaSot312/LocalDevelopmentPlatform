@@ -19,7 +19,8 @@ public class TuristaController {
     protected final ItinerarioService itinerarioService;
 
     @Autowired
-    public TuristaController(PuntoInteresseService puntoInteresseService, ItinerarioService itinerarioService) {
+    public TuristaController(PuntoInteresseService puntoInteresseService,
+                             ItinerarioService itinerarioService) {
         this.puntoInteresseService = puntoInteresseService;
         this.itinerarioService = itinerarioService;
     }

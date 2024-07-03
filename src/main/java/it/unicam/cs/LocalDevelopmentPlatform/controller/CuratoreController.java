@@ -2,9 +2,7 @@ package it.unicam.cs.LocalDevelopmentPlatform.controller;
 
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.BufferPunti;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
-import it.unicam.cs.LocalDevelopmentPlatform.service.BufferPuntiService;
-import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
-import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoInteresseService;
+import it.unicam.cs.LocalDevelopmentPlatform.service.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,13 +11,18 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("curatore")
-public class CuratoreController extends TuristaController{
+public class CuratoreController extends ContributorController{
 
-    private final BufferPuntiService bufferPuntiService;
-
-    public CuratoreController(PuntoInteresseService puntoInteresseService, ItinerarioService itinerarioService, BufferPuntiService bufferPuntiService) {
-        super(puntoInteresseService, itinerarioService);
-        this.bufferPuntiService = bufferPuntiService;
+    public CuratoreController(PuntoInteresseService puntoInteresseService,
+                              ItinerarioService itinerarioService,
+                              BufferPuntiService bufferPuntiService,
+                              UserService userService,
+                              ContestService contestService) {
+        super(puntoInteresseService,
+                itinerarioService,
+                bufferPuntiService,
+                contestService,
+                userService);
     }
     /*
     Eliminazione di un punto di interesse tramite id

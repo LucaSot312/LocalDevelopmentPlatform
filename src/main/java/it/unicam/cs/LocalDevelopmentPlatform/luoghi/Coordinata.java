@@ -18,5 +18,13 @@ public class Coordinata {
         this.latitudine = latitudine;
         this.longitudine = longitudine;
     }
+
+    public void setLatitudine(double latitudine) {
+        this.latitudine = latitudine;
+    }
+
+    public void setLongitudine(double longitudine) {
+        this.longitudine = longitudine;
+    }
 }
 

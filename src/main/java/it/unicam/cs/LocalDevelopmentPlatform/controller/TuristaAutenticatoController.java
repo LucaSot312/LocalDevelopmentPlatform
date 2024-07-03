@@ -17,11 +17,15 @@ import java.util.List;
 @RequestMapping("turista")
 public class TuristaAutenticatoController extends TuristaController{
 
-    private final UserService userService;
-    private final ContestService contestService;
+    protected final UserService userService;
+    protected final ContestService contestService;
 
-    public TuristaAutenticatoController(PuntoInteresseService puntoInteresseService, ItinerarioService itinerarioService, UserService userService, ContestService contestService) {
-        super(puntoInteresseService, itinerarioService);
+    public TuristaAutenticatoController(PuntoInteresseService puntoInteresseService,
+                                        ItinerarioService itinerarioService,
+                                        UserService userService,
+                                        ContestService contestService) {
+        super(puntoInteresseService,
+                itinerarioService);
         this.userService = userService;
         this.contestService = contestService;
     }

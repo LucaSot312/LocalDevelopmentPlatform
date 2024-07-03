@@ -1,5 +1,8 @@
 package it.unicam.cs.LocalDevelopmentPlatform.controller;
 
+import it.unicam.cs.LocalDevelopmentPlatform.service.ContestService;
+import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
+import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoInteresseService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.UserService;
 import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +14,18 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("admin")
-public class AdminController {
-    private final UserService userService;
+public class AdminController extends TuristaAutenticatoController {
 
     @Autowired
-    public AdminController(UserService userService) {
-        this.userService = userService;
+    public AdminController(UserService userService,
+                           PuntoInteresseService puntoInteresseService,
+                           ItinerarioService itinerarioService,
+                           ContestService contestService) {
+        super(puntoInteresseService,
+                itinerarioService,
+                userService,
+                contestService
+        );
     }
     /*
     Aggiunta di un nuovo utente

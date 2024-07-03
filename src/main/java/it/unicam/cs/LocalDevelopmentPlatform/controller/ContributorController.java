@@ -2,22 +2,28 @@ package it.unicam.cs.LocalDevelopmentPlatform.controller;
 
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.BufferPunti;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
-import it.unicam.cs.LocalDevelopmentPlatform.service.BufferPuntiService;
-import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoInteresseService;
+import it.unicam.cs.LocalDevelopmentPlatform.service.*;
 import org.springframework.web.bind.annotation.*;
-import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
+
 /*
     Classe controller per la gestione del profilo Contributor
  */
 @RestController
 @RequestMapping("contributor")
-public class ContributorController extends TuristaController {
+public class ContributorController extends TuristaAutenticatoController {
 
-    BufferPuntiService bufferPuntiService;
-    public ContributorController(PuntoInteresseService puntoInteresseService, ItinerarioService itinerarioService, BufferPuntiService bufferPuntiService) {
-        super(puntoInteresseService, itinerarioService);
+    protected final BufferPuntiService bufferPuntiService;
+
+    public ContributorController(PuntoInteresseService puntoInteresseService,
+                                 ItinerarioService itinerarioService,
+                                 BufferPuntiService bufferPuntiService,
+                                 ContestService contestService,
+                                 UserService userService) {
+        super(puntoInteresseService,
+                itinerarioService,
+                userService,
+                contestService);
         this.bufferPuntiService=bufferPuntiService;
-
     }
     /*
     Caricamento di un nuovo punto di interesse in attesa di essere verificato
