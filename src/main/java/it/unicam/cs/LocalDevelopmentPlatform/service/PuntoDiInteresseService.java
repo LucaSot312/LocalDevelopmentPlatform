@@ -11,13 +11,13 @@ Classe Service per l'implementazione delle funzionalità relative ai punti di in
 verificati messe a disposizione nel Controller
  */
 @Service
-public class PuntoInteresseService {
+public class PuntoDiInteresseService {
 
 
     private final PuntoDiInteresseRepo puntoDiInteresseRepo;
 
     @Autowired
-    public PuntoInteresseService(PuntoDiInteresseRepo puntoDiInteresseRepo) {
+    public PuntoDiInteresseService(PuntoDiInteresseRepo puntoDiInteresseRepo) {
         this.puntoDiInteresseRepo = puntoDiInteresseRepo;
     }
 
@@ -36,11 +36,12 @@ public class PuntoInteresseService {
     Metodo per la segnalazione di un punto di interesse: crea una copia del punto in questione, chiama il metodo segnala()
     con associato il motivo della segnalazione e reinserisce il nuovo punto di interesse segnalato sul db
      */
-    public void segnalaPunto(int id, String motivo) {
+    public PuntoDiInteresse segnalaPunto(int id, String motivo) {
         PuntoDiInteresse temp=puntoDiInteresseRepo.findById(id);
         puntoDiInteresseRepo.deleteById(id);
         temp.segnala(motivo);
         puntoDiInteresseRepo.save(temp);
+        return temp;
     }
 
     public List<PuntoDiInteresse> getSegnalati() {

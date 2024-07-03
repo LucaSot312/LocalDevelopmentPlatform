@@ -52,4 +52,5 @@ public class AdminController extends TuristaAutenticatoController {
      */
     @PutMapping("/eliminaUtente/{id}")
     public void eliminaUtente(@PathVariable int id) {userService.deleteUserById(id);}
+
 }
