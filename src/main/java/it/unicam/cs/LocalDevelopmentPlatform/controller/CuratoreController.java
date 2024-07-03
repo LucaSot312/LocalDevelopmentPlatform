@@ -13,12 +13,12 @@ import java.util.List;
 @RequestMapping("curatore")
 public class CuratoreController extends ContributorController{
 
-    public CuratoreController(PuntoInteresseService puntoInteresseService,
+    public CuratoreController(PuntoDiInteresseService puntoDiInteresseService,
                               ItinerarioService itinerarioService,
                               BufferPuntiService bufferPuntiService,
                               UserService userService,
                               ContestService contestService) {
-        super(puntoInteresseService,
+        super(puntoDiInteresseService,
                 itinerarioService,
                 bufferPuntiService,
                 contestService,
@@ -29,7 +29,7 @@ public class CuratoreController extends ContributorController{
      */
     @PutMapping("/eliminaPunto/{id}")
     public void eliminaPunto(@PathVariable int id){
-        puntoInteresseService.deletePunto(id);
+        puntoDiInteresseService.deletePunto(id);
     };
     /*
     Eliminazione di un itinerario tramite id
@@ -55,10 +55,11 @@ public class CuratoreController extends ContributorController{
     Visualizza i punti di interesse segnalati
      */
     @GetMapping("/segnalati")
-    public List<PuntoDiInteresse> segnalati(){return puntoInteresseService.getSegnalati(); }
+    public List<PuntoDiInteresse> segnalati(){return puntoDiInteresseService.getSegnalati(); }
     /*
     Rimuovi la segnalazione di un punto di interesse tramite id
      */
     @PutMapping("/rimuoviSegnalato/{id}")
-    public void rimuoviSegnalato(@PathVariable int id){puntoInteresseService.removeSegnalato(id);}
+    public void rimuoviSegnalato(@PathVariable int id){
+        puntoDiInteresseService.removeSegnalato(id);}
 }

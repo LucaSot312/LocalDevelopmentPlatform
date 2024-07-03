@@ -5,7 +5,7 @@ import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 import it.unicam.cs.LocalDevelopmentPlatform.service.ContestService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
-import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoInteresseService;
+import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoDiInteresseService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +20,7 @@ public class TuristaAutenticatoController extends TuristaController{
     protected final UserService userService;
     protected final ContestService contestService;
 
-    public TuristaAutenticatoController(PuntoInteresseService puntoInteresseService,
+    public TuristaAutenticatoController(PuntoDiInteresseService puntoInteresseService,
                                         ItinerarioService itinerarioService,
                                         UserService userService,
                                         ContestService contestService) {

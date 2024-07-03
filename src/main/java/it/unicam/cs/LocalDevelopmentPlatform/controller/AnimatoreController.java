@@ -15,11 +15,8 @@ import java.util.ArrayList;
 @RequestMapping("Animatore")
 public class AnimatoreController extends TuristaAutenticatoController {
 
-    private final ContestService contestService;
-
-    public AnimatoreController(PuntoInteresseService puntoInteresseService,
+    public AnimatoreController(PuntoDiInteresseService puntoInteresseService,
                                ItinerarioService itinerarioService,
-                               BufferPuntiService bufferPuntiService,
                                ContestService contestService,
                                UserService userService) {
         super( puntoInteresseService,

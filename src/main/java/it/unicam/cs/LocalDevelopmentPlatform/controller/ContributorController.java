@@ -14,7 +14,7 @@ public class ContributorController extends TuristaAutenticatoController {
 
     protected final BufferPuntiService bufferPuntiService;
 
-    public ContributorController(PuntoInteresseService puntoInteresseService,
+    public ContributorController(PuntoDiInteresseService puntoInteresseService,
                                  ItinerarioService itinerarioService,
                                  BufferPuntiService bufferPuntiService,
                                  ContestService contestService,
