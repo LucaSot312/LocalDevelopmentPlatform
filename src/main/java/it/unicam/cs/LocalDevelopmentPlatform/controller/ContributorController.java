@@ -29,8 +29,9 @@ public class ContributorController extends TuristaAutenticatoController {
     Caricamento di un nuovo punto di interesse in attesa di essere verificato
      */
     @PostMapping(value = "/caricaPunto")
-    public void caricaPunto(@RequestBody BufferPunti punto) {
-        bufferPuntiService.savePunto(punto);
+    public BufferPunti caricaPunto(@RequestBody BufferPunti punto) {
+        return bufferPuntiService.savePunto(punto);
+
     }
     /*
     Caricamento di un nuovo itinerario

@@ -31,7 +31,9 @@ public class PuntoDiInteresseService {
         return puntoDiInteresseRepo.findById(id);
     }
 
-    public void deletePunto(int id){puntoDiInteresseRepo.deleteById(id);}
+    public void deletePunto(int id){
+        puntoDiInteresseRepo.deleteById(id);
+    }
     /*
     Metodo per la segnalazione di un punto di interesse: crea una copia del punto in questione, chiama il metodo segnala()
     con associato il motivo della segnalazione e reinserisce il nuovo punto di interesse segnalato sul db

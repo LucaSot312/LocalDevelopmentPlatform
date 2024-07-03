@@ -17,7 +17,7 @@ messe a disposizione nel Controller
 @Service
 public class ItinerarioService {
     private final ItinerarioRepo itinerarioRepo;
-    private final PuntoDiInteresseRepo puntoDiInteresseRepo;
+    private final PuntoDiInteresseRepo puntoDiInteresseRepo;    
 
     @Autowired
     public ItinerarioService(ItinerarioRepo itinerarioRepo, PuntoDiInteresseRepo puntoDiInteresseRepo) {
@@ -37,7 +37,7 @@ public class ItinerarioService {
         ArrayList<Integer> listaFiltrata = itinerario.getItinerario();
         listaFiltrata.removeIf(num -> puntoDiInteresseRepo.findById(num).isEmpty());
         itinerario.setItinerario(listaFiltrata);
-        if(itinerario.getItinerario().isEmpty()){
+        if(itinerario.getItinerario().isEmpty() || itinerario.getItinerario().size()==1){
             return null;
         }
         else{return itinerarioRepo.save(itinerario);}
