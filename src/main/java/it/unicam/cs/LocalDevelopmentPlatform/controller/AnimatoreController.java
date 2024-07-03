@@ -38,6 +38,6 @@ public class AnimatoreController extends TuristaAutenticatoController {
     public User determinaVincitore(@PathVariable int id){return contestService.determinaVincitore(id);}
 
     @PutMapping("/delContest/{id}")
-    public void eliminaContest(@PathVariable int id) {contestService.delContest(id);}
+    public boolean eliminaContest(@PathVariable int id) {return contestService.delContest(id);}
 }
 

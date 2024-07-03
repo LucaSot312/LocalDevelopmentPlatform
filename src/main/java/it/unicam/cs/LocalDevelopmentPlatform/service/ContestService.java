@@ -81,8 +81,12 @@ Metodo per ottenere tutti i contest attivi
 /*
 Metodo per l'eliminazione di un contest dato l'id
  */
-    public void delContest(int id) {
+    public boolean delContest(int id) {
         contestRepo.deleteById(id);
+        if(contestRepo.existsById(id)){
+            return false;
+        }
+        else{return true;}
     }
 
     public List<Integer> checkPunti(int id){
