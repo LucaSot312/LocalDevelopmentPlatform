@@ -28,14 +28,13 @@ public class CuratoreController extends ContributorController{
     Eliminazione di un punto di interesse tramite id
      */
     @PutMapping("/eliminaPunto/{id}")
-    public void eliminaPunto(@PathVariable int id){
-        puntoDiInteresseService.deletePunto(id);
+    public String eliminaPunto(@PathVariable int id){ return puntoDiInteresseService.deletePunto(id);
     };
     /*
     Eliminazione di un itinerario tramite id
      */
     @PutMapping("/eliminaItinerario/{id}")
-    public void eliminaItinerario(@PathVariable int id){itinerarioService.deleteItinerario(id);}
+    public boolean eliminaItinerario(@PathVariable int id){return itinerarioService.deleteItinerario(id);}
     /*
     Visualizza tutti i punti di interesse non verificati
      */

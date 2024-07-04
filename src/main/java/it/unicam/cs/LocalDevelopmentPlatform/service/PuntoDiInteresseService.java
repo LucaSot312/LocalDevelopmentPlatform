@@ -15,10 +15,14 @@ public class PuntoDiInteresseService {
 
 
     private final PuntoDiInteresseRepo puntoDiInteresseRepo;
+    private final ItinerarioService itinerarioService;
+    private final ContestService contestService;
 
     @Autowired
-    public PuntoDiInteresseService(PuntoDiInteresseRepo puntoDiInteresseRepo) {
+    public PuntoDiInteresseService(PuntoDiInteresseRepo puntoDiInteresseRepo, ItinerarioService itinerarioService, ContestService contestService) {
         this.puntoDiInteresseRepo = puntoDiInteresseRepo;
+        this.itinerarioService = itinerarioService;
+        this.contestService = contestService;
     }
 
     public List<PuntoDiInteresse> getAllPunti() {
@@ -31,8 +35,18 @@ public class PuntoDiInteresseService {
         return puntoDiInteresseRepo.findById(id);
     }
 
-    public void deletePunto(int id){
-        puntoDiInteresseRepo.deleteById(id);
+    public String deletePunto(int id){
+
+        if(itinerarioService.checkPunti(id).isEmpty() && contestService.checkPunti(id).isEmpty()) {
+            puntoDiInteresseRepo.deleteById(id);
+            return "Cancellazione andata a buon fine";
+        }
+        else{
+            return "Cancellazione Fallita, Punto presente nei seguenti itinerari: "
+                    .concat(itinerarioService.checkPunti(id).toString())
+                    .concat("e nei seguenti contest: ")
+                    .concat(contestService.checkPunti(id).toString());
+        }
     }
     /*
     Metodo per la segnalazione di un punto di interesse: crea una copia del punto in questione, chiama il metodo segnala()

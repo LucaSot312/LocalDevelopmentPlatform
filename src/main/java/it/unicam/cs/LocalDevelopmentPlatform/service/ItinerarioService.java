@@ -60,5 +60,21 @@ public class ItinerarioService {
             return puntiDiInteresse;
         }
 
-    public void deleteItinerario(int id) { puntoDiInteresseRepo.deleteById(id); }
+    public boolean deleteItinerario(int id) {
+        puntoDiInteresseRepo.deleteById(id);
+        if (puntoDiInteresseRepo.existsById(id)){
+            return false;
+        }
+        else{return true;}
+    }
+
+    public List<Integer> checkPunti(int id) {
+        List<Integer> checklist = new ArrayList<>();
+        for (Itinerario itinerario : itinerarioRepo.findAll()){
+            if(itinerario.getItinerario().contains(id)){
+                checklist.add(itinerario.getId());
+            }
+        }
+        return checklist;
+    }
 }

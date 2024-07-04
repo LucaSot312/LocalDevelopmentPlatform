@@ -69,7 +69,7 @@ Metodo per determinare il vincitore del contest
     public User determinaVincitore(int Idcontest){
         //TODO il presente metodo va implementato dopo aver implementato login, sessione
         // e anche il database dei media per poter calcolare chi ha caricato e quanto abbia caricato
-        // e determinare il vincitore
+        // e determinare il vincitoreA
         return null;
     }
 /*
@@ -81,7 +81,21 @@ Metodo per ottenere tutti i contest attivi
 /*
 Metodo per l'eliminazione di un contest dato l'id
  */
-    public void delContest(int id) {
+    public boolean delContest(int id) {
         contestRepo.deleteById(id);
+        if(contestRepo.existsById(id)){
+            return false;
+        }
+        else{return true;}
+    }
+
+    public List<Integer> checkPunti(int id){
+        List<Integer> checklist = new ArrayList();
+        for(Contest contest : contestRepo.findAll()){
+            if(contest.getListaPunti().contains(id)){
+                checklist.add(contest.get_id());
+            }
+        }
+        return checklist;
     }
 }
