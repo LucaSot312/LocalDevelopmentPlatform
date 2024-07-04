@@ -75,4 +75,9 @@ public class UserService{
         return userRepo.findById(idUtente).getRuolo().equals(ruolo);
 
     }
+
+    public ArrayList<Integer> filtraUtenti(ArrayList<Integer> listaPartecipanti) {
+        listaPartecipanti.removeIf(num -> userRepo.findById(num).isEmpty());
+        return listaPartecipanti;
+    }
 }

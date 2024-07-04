@@ -54,7 +54,19 @@ public class TuristaAutenticatoController extends TuristaController{
      */
     @GetMapping("/mieiItinierari/{id}")
     public List<Itinerario> mieiItinerari(@PathVariable int id){return userService.mieiItinerari(id); }
-
+    /*
+    Visualizza tutti i contest attivi
+     */
     @GetMapping("/contest")
     public List<Contest> contest(){return contestService.allContest();}
+    /*
+    Visualizza i punti di interesse salvati nel profilo
+     */
+    @GetMapping("/mieiContest/{idUtente}")
+    public List<Contest> mieiContest(@PathVariable int idUtente){return contestService.mieiContest(idUtente); }
+
+
+
+
+
 }

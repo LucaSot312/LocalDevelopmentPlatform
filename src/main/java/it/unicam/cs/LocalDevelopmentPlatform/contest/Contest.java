@@ -46,10 +46,6 @@ public class Contest {
         this._id =Math.abs(this.hashCode());
     }
 
-    public void addPartecipanti(ArrayList<Integer> listaPartecipanti) {
-        this.listaPartecipanti.addAll(listaPartecipanti);
-    }
-
     public ArrayList<Integer> getListaPartecipanti() {return listaPartecipanti;}
 
     public void setListaPartecipanti(ArrayList<Integer> listaPartecipanti) {

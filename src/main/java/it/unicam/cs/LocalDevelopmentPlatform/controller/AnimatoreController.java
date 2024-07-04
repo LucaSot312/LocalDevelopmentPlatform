@@ -2,7 +2,6 @@ package it.unicam.cs.LocalDevelopmentPlatform.controller;
 
 import it.unicam.cs.LocalDevelopmentPlatform.contest.Contest;
 import it.unicam.cs.LocalDevelopmentPlatform.service.*;
-import it.unicam.cs.LocalDevelopmentPlatform.utenti.TuristaAutenticato;
 import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +36,7 @@ public class AnimatoreController extends TuristaAutenticatoController {
     @GetMapping("/determinaVincitore")
     public User determinaVincitore(@PathVariable int id){return contestService.determinaVincitore(id);}
 
-    @PutMapping("/delContest/{id}")
-    public boolean eliminaContest(@PathVariable int id) {return contestService.delContest(id);}
+    @PutMapping("/eliminaContest/{id}")
+    public boolean eliminaContest(@PathVariable int id) {return contestService.eliminaContest(id);}
 }
 

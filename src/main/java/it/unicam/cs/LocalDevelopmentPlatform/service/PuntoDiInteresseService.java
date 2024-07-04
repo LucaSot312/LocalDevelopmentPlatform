@@ -5,6 +5,7 @@ import it.unicam.cs.LocalDevelopmentPlatform.repository.PuntoDiInteresseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 /*
 Classe Service per l'implementazione delle funzionalità relative ai punti di interesse
@@ -72,5 +73,10 @@ public class PuntoDiInteresseService {
         puntoDiInteresseRepo.deleteById(id);
         temp.removeSegnalato();
         return puntoDiInteresseRepo.save(temp);
+    }
+
+    public ArrayList<Integer> filtraPuntiDiInteresse(ArrayList<Integer> listaPunti) {
+        listaPunti.removeIf(num -> puntoDiInteresseRepo.findById(num).isEmpty());
+        return listaPunti;
     }
 }
