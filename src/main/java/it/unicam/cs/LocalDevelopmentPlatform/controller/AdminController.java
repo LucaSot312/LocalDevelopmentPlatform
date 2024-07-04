@@ -4,6 +4,7 @@ import it.unicam.cs.LocalDevelopmentPlatform.service.ContestService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoDiInteresseService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.UserService;
+import it.unicam.cs.LocalDevelopmentPlatform.utenti.Ruolo;
 import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +52,9 @@ public class AdminController extends TuristaAutenticatoController {
     Eliminazione di un utente tramite id
      */
     @PutMapping("/eliminaUtente/{id}")
-    public void eliminaUtente(@PathVariable int id) {userService.deleteUserById(id);}
+    public boolean eliminaUtente(@PathVariable int id) {return userService.eliminaUtente(id);}
+
+    @PutMapping("/cambiaRuolo/{id}/{ruolo}")
+    public boolean cambiaRuolo(@PathVariable int id, @PathVariable Ruolo ruolo) {return userService.cambiaRuolo(id,ruolo);}
 
 }

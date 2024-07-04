@@ -38,7 +38,7 @@ public class TuristaAutenticatoController extends TuristaController{
     Salva un punto di interesse nel profilo utente
      */
     @PutMapping("/salvaPunto/{idUtente}/{idPunto}")
-    public void salvaPunto(@PathVariable int idUtente, @PathVariable int idPunto){userService.salvaPunto(idUtente,idPunto); }
+    public boolean salvaPunto(@PathVariable int idUtente, @PathVariable int idPunto){return userService.salvaPunto(idUtente,idPunto); }
     /*
     Visualizza i punti di interesse salvati nel profilo
      */
@@ -48,12 +48,12 @@ public class TuristaAutenticatoController extends TuristaController{
     Salva un itinerario nel profilo utente
      */
     @PutMapping("/salvaItinerario/{idUtente}/{idItinerario}")
-    public void salvaItinerario(@PathVariable int idUtente, @PathVariable int idItinerario){userService.salvaItinerario(idUtente, idItinerario); }
+    public boolean salvaItinerario(@PathVariable int idUtente, @PathVariable int idItinerario){return userService.salvaItinerario(idUtente, idItinerario); }
     /*
     Visualizza gli itinerari salvati nel profilo
      */
     @GetMapping("/mieiItinierari/{id}")
-    public List<PuntoDiInteresse> mieiItinerari(@PathVariable int id){return userService.mieiItinerari(id); }
+    public List<Itinerario> mieiItinerari(@PathVariable int id){return userService.mieiItinerari(id); }
 
     @GetMapping("/contest")
     public List<Contest> contest(){return contestService.allContest();}

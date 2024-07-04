@@ -1,9 +1,11 @@
 package it.unicam.cs.LocalDevelopmentPlatform.service;
 
+import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.ItinerarioRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.PuntoDiInteresseRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.UserRepo;
+import it.unicam.cs.LocalDevelopmentPlatform.utenti.Ruolo;
 import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,32 +37,42 @@ public class UserService{
 
     public User findUserById(int id) { return userRepo.findById(id); }
 
-    public void deleteUserById(int id) { userRepo.deleteById(id); }
+    public boolean eliminaUtente(int id) {
+        if(userRepo.findById(id).getRuolo()== Ruolo.ADMIN) {
+            return false;
+        }else{
+            userRepo.deleteById(id);
+            return true;
+        }
+
+    }
 
     public User addUser(User user) {return userRepo.save(user);}
 
-    public List<User> findAll() {return userRepo.findAll(); }
+    public List<User> findAll() {return userRepo.findAllNotAdmin(); }
 
     public List<PuntoDiInteresse> mieiPunti(int id) {
         List<Integer> listaPunti = (userRepo.findById(id)).getIdPuntiDiInteresse();
         return puntoDiInteresseRepo.findAllById(listaPunti);
     }
 
-    public List<PuntoDiInteresse> mieiItinerari(int id) {
-
-        List<PuntoDiInteresse> mieiPunti = new ArrayList<PuntoDiInteresse>();
+    public List<Itinerario> mieiItinerari(int id) {
         List<Integer> listaItinierari = (userRepo.findById(id)).getIdItinerari();
-        for(Integer i : listaItinierari){
-           mieiPunti.addAll(itinerarioService.getPuntiItinerario(i));
-        }
-      return mieiPunti;
+        return itinerarioRepo.findAllById(listaItinierari);
     }
 
-    public void salvaPunto(int idUtente, int idPunto) {
+    public boolean salvaPunto(int idUtente, int idPunto) {
         userRepo.findById(idUtente).getIdPuntiDiInteresse().add(idPunto);
+        return userRepo.findById(idUtente).getIdPuntiDiInteresse().contains(idPunto);
     }
 
-    public void salvaItinerario(int idUtente, int idItinerario) {
+    public boolean salvaItinerario(int idUtente, int idItinerario) {
         userRepo.findById(idUtente).getIdItinerari().add(idItinerario);
+        return userRepo.findById(idUtente).getIdItinerari().contains(idItinerario);
+    }
+    public boolean cambiaRuolo(int idUtente, Ruolo ruolo){
+        userRepo.findById(idUtente).setRuolo(ruolo);
+        return userRepo.findById(idUtente).getRuolo().equals(ruolo);
+
     }
 }

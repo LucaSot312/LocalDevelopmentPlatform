@@ -15,7 +15,7 @@ public class User{
 
     private final String username;
     private final String password;
-    private final Ruolo ruolo;
+    private Ruolo ruolo;
     private ArrayList<Integer> idPuntiDiInteresse;
     private ArrayList<Integer> idItinerari;
 
@@ -74,5 +74,9 @@ public class User{
 
     public void setIdItinerari(ArrayList<Integer> idItinerari) {
         this.idItinerari = idItinerari;
+    }
+
+    public void setRuolo(Ruolo ruolo) {
+        this.ruolo = ruolo;
     }
 }

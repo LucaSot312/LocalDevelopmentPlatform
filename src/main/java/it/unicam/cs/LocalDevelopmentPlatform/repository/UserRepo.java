@@ -4,6 +4,9 @@ import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
 /*
 Classe Repository per la gestione degli utenti
  */
@@ -19,6 +22,10 @@ public interface UserRepo extends MongoRepository<User, Integer> {
      */
     @Query("{'username' :  ?0}")
     User findByUsername(String username);
-
+    /*
+    Ottieni tutti gli utenti che non sono Admin
+     */
+    @Query("{'ruolo' :{ $ne : 'ADMIN' } } ")
+    List<User> findAllNotAdmin();
 }
 

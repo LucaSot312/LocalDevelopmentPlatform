@@ -34,14 +34,16 @@ public class BufferPuntiService {
     Metodo per la verifica di un punto di interesse: crea una copia del punto non verificato
     istanziandola con il tipo del punto verificato, inizializza i nuovi campi e la salva sul db
      */
-    public void verificaPunto(int id) {
+    public PuntoDiInteresse verificaPunto(int id) {
         BufferPunti temp = bufferPuntiRepo.findById(id).orElseThrow();
         PuntoDiInteresse punto = new PuntoDiInteresse(temp.getCoordinata(), temp.getNome(), temp.getTipologia(), temp.getDescrizione());
         puntoDiInteresseRepo.save(punto);
         bufferPuntiRepo.deleteById(id);
+        return puntoDiInteresseRepo.findById(id);
     }
 
-    public void pulisciBuffer(int id) {
+    public boolean pulisciBuffer(int id) {
         bufferPuntiRepo.deleteById(id);
+        return !bufferPuntiRepo.existsById(id);
     }
 }

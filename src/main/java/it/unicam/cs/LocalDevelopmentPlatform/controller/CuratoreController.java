@@ -44,12 +44,12 @@ public class CuratoreController extends ContributorController{
     Verifica un punto di interesse tramite id
      */
     @PutMapping("/verificaPunto/{id}")
-    public void verificaPunto(@PathVariable int id){bufferPuntiService.verificaPunto(id); }
+    public PuntoDiInteresse verificaPunto(@PathVariable int id){return bufferPuntiService.verificaPunto(id); }
     /*
     Elimina un punto di interesse che è stato verificato dalla lista di punti da verificare (tramite id)
      */
     @PutMapping("/pulisciBuffer/{id}")
-    public void pulisciBuffer(@PathVariable int id){bufferPuntiService.pulisciBuffer(id); }
+    public boolean pulisciBuffer(@PathVariable int id){return bufferPuntiService.pulisciBuffer(id); }
     /*
     Visualizza i punti di interesse segnalati
      */
