@@ -60,6 +60,6 @@ public class CuratoreController extends ContributorController{
     Rimuovi la segnalazione di un punto di interesse tramite id
      */
     @PutMapping("/rimuoviSegnalato/{id}")
-    public void rimuoviSegnalato(@PathVariable int id){
-        puntoDiInteresseService.removeSegnalato(id);}
+    public PuntoDiInteresse rimuoviSegnalato(@PathVariable int id){
+        return puntoDiInteresseService.removeSegnalato(id);}
 }

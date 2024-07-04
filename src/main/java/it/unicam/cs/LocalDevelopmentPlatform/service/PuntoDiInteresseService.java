@@ -53,10 +53,10 @@ public class PuntoDiInteresseService {
     /*
     Metodo per la rimozione della segnalazione con funzionamento analogo a segnalaPunto()
      */
-    public void removeSegnalato(int id) {
+    public PuntoDiInteresse removeSegnalato(int id) {
         PuntoDiInteresse temp=puntoDiInteresseRepo.findById(id);
         puntoDiInteresseRepo.deleteById(id);
         temp.removeSegnalato();
-        puntoDiInteresseRepo.save(temp);
+        return puntoDiInteresseRepo.save(temp);
     }
 }
