@@ -33,7 +33,7 @@ public class AnimatoreController extends TuristaAutenticatoController {
         //TODO metodo non funzionante a causa di databind errati di JacksonData
         return contestService.aggiungiPartecipanti(id,partecipantiAggiuntivi);}
 
-    @GetMapping("/determinaVincitore")
+    @GetMapping("/determinaVincitore/{id}")
     public User determinaVincitore(@PathVariable int id){return contestService.determinaVincitore(id);}
 
     @PutMapping("/eliminaContest/{id}")

@@ -86,7 +86,10 @@ public class ContestService {
     public User determinaVincitore(int Idcontest) {
         //TODO il presente metodo va implementato dopo aver implementato login, sessione
         // e anche il database dei media per poter calcolare chi ha caricato e quanto abbia caricato
-        // e determinare il vincitoreA
+        // for che scorra tutti i media e sommi tutte le contribuzioni per ogni punto(id) raggruppandole per gli id di chi le carica e filtrando per avere solo gli id
+        // che sono nella lista partecipanti e poi facendo una classifica
+        // mediarepo.findAll().filter(idPunto=listaIdContest).for(count if iterato è stato caricato da
+
         return null;
     }
 
