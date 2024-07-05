@@ -24,15 +24,21 @@ public class ItinerarioService {
         this.itinerarioRepo = itinerarioRepo;
         this.puntoDiInteresseRepo = puntoDiInteresseRepo;
     }
-
+    /*
+    Restituisce un itinerario dato dato l'id
+     */
     public Itinerario getItinerarioById(int id){
         return itinerarioRepo.findById(id);
     }
-
+    /*
+    Restituisce tutti gli itinerari presenti nella mappa
+     */
     public List<Itinerario> getAllItinerari(){
         return itinerarioRepo.findAll();
     }
-
+    /*
+    Crea un nuovo itinerario controllando che i punti che lo compongono almeno 2 e che esistano
+     */
     public Itinerario caricaItinerario(Itinerario itinerario) {
         ArrayList<Integer> listaFiltrata = itinerario.getItinerario();
         listaFiltrata.removeIf(num -> puntoDiInteresseRepo.findById(num).isEmpty());
@@ -59,7 +65,9 @@ public class ItinerarioService {
             }
             return puntiDiInteresse;
         }
-
+    /*
+    Cancella un itinerario dato l'id
+     */
     public boolean deleteItinerario(int id) {
         puntoDiInteresseRepo.deleteById(id);
         if (puntoDiInteresseRepo.existsById(id)){
@@ -67,7 +75,9 @@ public class ItinerarioService {
         }
         else{return true;}
     }
-
+    /*
+    Metodo utility che dato un id (punto di interesse) restituisce tutti gli itinerari (id) che contengono quel punto
+      */
     public List<Integer> checkPunti(int id) {
         List<Integer> checklist = new ArrayList<>();
         for (Itinerario itinerario : itinerarioRepo.findAll()){

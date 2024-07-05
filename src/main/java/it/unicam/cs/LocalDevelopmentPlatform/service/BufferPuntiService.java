@@ -22,7 +22,7 @@ public class BufferPuntiService {
         this.puntoDiInteresseRepo = puntoDiInteresseRepo;
     }
 
-    public BufferPunti savePunto(BufferPunti punto) {
+    public BufferPunti salvaPunto(BufferPunti punto) {
         return bufferPuntiRepo.save(punto);
 
     }

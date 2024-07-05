@@ -34,7 +34,7 @@ public class TuristaController {
      */
     @GetMapping("/punto/{id}")
     public PuntoDiInteresse getPuntoById(@PathVariable int id) {
-        return puntoDiInteresseService.getPuntoByID(id);
+        return puntoDiInteresseService.getPuntoById(id);
     }
     /*
     Visualizza tutti gli itinerari esistenti
@@ -54,7 +54,7 @@ public class TuristaController {
     Segnala un punto di interesse fornendo un motivo
      */
     @PutMapping("/segnalaPunto/{id}/{motivo}")
-    public void segnalaPunto(@PathVariable int id, @PathVariable String motivo){
-        puntoDiInteresseService.segnalaPunto(id,motivo);
+    public PuntoDiInteresse segnalaPunto(@PathVariable int id, @PathVariable String motivo){
+        return puntoDiInteresseService.segnalaPunto(id,motivo);
     }
 }

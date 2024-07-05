@@ -30,7 +30,7 @@ public class ContributorController extends TuristaAutenticatoController {
      */
     @PostMapping(value = "/caricaPunto")
     public BufferPunti caricaPunto(@RequestBody BufferPunti punto) {
-        return bufferPuntiService.savePunto(punto);
+        return bufferPuntiService.salvaPunto(punto);
 
     }
     /*

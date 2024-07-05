@@ -25,17 +25,21 @@ public class PuntoDiInteresseService {
         this.itinerarioService = itinerarioService;
         this.contestService = contestService;
     }
-
+    /*
+    Restituisce tutti i punti di interesse presenti nella mappa
+     */
     public List<PuntoDiInteresse> getAllPunti() {
         return puntoDiInteresseRepo.findAll();
     }
-
-    public List<PuntoDiInteresse> getAllPuntiById(List<Integer> punti){return puntoDiInteresseRepo.findAllById(punti);}
-
-    public PuntoDiInteresse getPuntoByID(int id) {
+    /*
+    Restituisce un punto di interesse dato il suo id
+     */
+    public PuntoDiInteresse getPuntoById(int id) {
         return puntoDiInteresseRepo.findById(id);
     }
-
+    /*
+    Cancella un punto di interesse dalla mappa dato il suo id, controllando se è presente o meno all'interno di itinerari e/o contest
+     */
     public String deletePunto(int id){
 
         if(itinerarioService.checkPunti(id).isEmpty() && contestService.checkPunti(id).isEmpty()) {
@@ -60,7 +64,9 @@ public class PuntoDiInteresseService {
         puntoDiInteresseRepo.save(temp);
         return temp;
     }
-
+    /*
+    Restituisce tutti i punti di interesse segnalati
+     */
     public List<PuntoDiInteresse> getSegnalati() {
         return puntoDiInteresseRepo.allSegnalati();
     }
@@ -74,7 +80,9 @@ public class PuntoDiInteresseService {
         temp.removeSegnalato();
         return puntoDiInteresseRepo.save(temp);
     }
-
+    /*
+    Metodo utility che presa una lista di id di punti di interesse rimuove dalla lista i punti che non sono più presenti nella mappa
+     */
     public ArrayList<Integer> filtraPuntiDiInteresse(ArrayList<Integer> listaPunti) {
         listaPunti.removeIf(num -> puntoDiInteresseRepo.findById(num).isEmpty());
         return listaPunti;

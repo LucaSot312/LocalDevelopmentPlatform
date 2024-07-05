@@ -32,11 +32,17 @@ public class UserService{
         this.itinerarioRepo = itinerarioRepo;
         this.itinerarioService = itinerarioService;
     }
-
+    /*
+    Restituisce un utente dato l'username
+     */
     public User loadUserByUsername(String username) { return userRepo.findByUsername(username); }
-
+    /*
+    Restituisce un utente dato l'username
+     */
     public User findUserById(int id) { return userRepo.findById(id); }
-
+    /*
+    Elimina un utente dato l'username
+     */
     public boolean eliminaUtente(int id) {
         if(userRepo.findById(id).getRuolo()== Ruolo.ADMIN) {
             return false;
@@ -46,36 +52,54 @@ public class UserService{
         }
 
     }
-
+    /*
+    Aggiunge un nuovo utente
+     */
     public User addUser(User user) {return userRepo.save(user);}
-
+    /*
+    Restituisce tutti gli utenti che non sono admin
+     */
     public List<User> findAll() {return userRepo.findAllNotAdmin(); }
-
+    /*
+    Restituisce i punti di interesse salvati nel profilo utente
+     */
     public List<PuntoDiInteresse> mieiPunti(int id) {
         List<Integer> listaPunti = (userRepo.findById(id)).getIdPuntiDiInteresse();
         return puntoDiInteresseRepo.findAllById(listaPunti);
     }
+    /*
+        Restituisce gli itinerari salvati nel profilo utente
 
+     */
     public List<Itinerario> mieiItinerari(int id) {
         List<Integer> listaItinierari = (userRepo.findById(id)).getIdItinerari();
         return itinerarioRepo.findAllById(listaItinierari);
     }
-
+    /*
+    Salva un punto di interesse nel profilo utente
+     */
     public boolean salvaPunto(int idUtente, int idPunto) {
         userRepo.findById(idUtente).getIdPuntiDiInteresse().add(idPunto);
         return userRepo.findById(idUtente).getIdPuntiDiInteresse().contains(idPunto);
     }
-
+    /*
+    Salva un itinerario nel profilo utente
+     */
     public boolean salvaItinerario(int idUtente, int idItinerario) {
         userRepo.findById(idUtente).getIdItinerari().add(idItinerario);
         return userRepo.findById(idUtente).getIdItinerari().contains(idItinerario);
     }
+    /*
+    Cambia il ruolo di un utente
+     */
     public boolean cambiaRuolo(int idUtente, Ruolo ruolo){
         userRepo.findById(idUtente).setRuolo(ruolo);
         return userRepo.findById(idUtente).getRuolo().equals(ruolo);
 
     }
-
+    /*
+    Metodo utility che presa una lista di utenti (id) rimuove dalla lista gli utenti non più presenti nella piattaforma
+     */
     public ArrayList<Integer> filtraUtenti(ArrayList<Integer> listaPartecipanti) {
         listaPartecipanti.removeIf(num -> userRepo.findById(num).isEmpty());
         return listaPartecipanti;

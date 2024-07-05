@@ -42,7 +42,7 @@ public class ContestService {
     }
 
     /*
-    Metodo per la creazione di un nuovo contest
+    Crea un nuovo contest controllando che i punti di interesse non siano già registrati ad un altro contest
      */
     public Contest bandisciContest(Contest contest) {
 
@@ -56,7 +56,7 @@ public class ContestService {
     }
 
     /*
-    Metodo per l'aggiunta di nuovi partecipanti al contest
+    Aggiunge nuovi partecipanti ad un contest controllando che non siano già presenti
      */
     public Contest aggiungiPartecipanti(int idContest, ArrayList<Integer> listaPartecipanti) {
         userService.filtraUtenti(listaPartecipanti);
@@ -81,7 +81,7 @@ public class ContestService {
     }
 
     /*
-    Metodo per determinare il vincitore del contest
+    Determina il vincitore di un contest
     */
     public User determinaVincitore(int Idcontest) {
         //TODO il presente metodo va implementato dopo aver implementato login, sessione
@@ -91,14 +91,14 @@ public class ContestService {
     }
 
     /*
-    Metodo per ottenere tutti i contest attivi
+    Restituisce tutti i contest attivi
     */
     public List<Contest> allContest() {
         return contestRepo.findAll();
     }
 
     /*
-    Metodo per l'eliminazione di un contest dato l'id
+    Elimina un contest dato l'id
     */
     public boolean eliminaContest(int id) {
         contestRepo.deleteById(id);
@@ -106,7 +106,7 @@ public class ContestService {
     }
 
     /*
-    Metodo per il controllo dei punti di interesse sui quali è aperto un contest
+    Controlla i punti di interesse sui quali è aperto un contest
     */
     public List<Integer> checkPunti(int id) {
         List<Integer> checklist = new ArrayList<>();
@@ -119,7 +119,7 @@ public class ContestService {
     }
 
     /*
-    Metodo per restiruire tutti i contest ai quali un utente è iscritto
+    Restituisce  tutti i contest ai quali un utente è iscritto
      */
     public List<Contest> mieiContest(int idUtente) {
         ArrayList<Contest> mieiContest = new ArrayList<>();
