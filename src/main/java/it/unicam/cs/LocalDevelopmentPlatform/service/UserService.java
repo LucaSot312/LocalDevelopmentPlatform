@@ -104,4 +104,8 @@ public class UserService{
         listaPartecipanti.removeIf(num -> userRepo.findById(num).isEmpty());
         return listaPartecipanti;
     }
+
+//    public creaUtente(){
+//
+//    }
 }

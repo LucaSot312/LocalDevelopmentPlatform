@@ -80,11 +80,4 @@ public class PuntoDiInteresseService {
         temp.removeSegnalato();
         return puntoDiInteresseRepo.save(temp);
     }
-    /*
-    Metodo utility che presa una lista di id di punti di interesse rimuove dalla lista i punti che non sono più presenti nella mappa
-     */
-    public ArrayList<Integer> filtraPuntiDiInteresse(ArrayList<Integer> listaPunti) {
-        listaPunti.removeIf(num -> puntoDiInteresseRepo.findById(num).isEmpty());
-        return listaPunti;
-    }
 }

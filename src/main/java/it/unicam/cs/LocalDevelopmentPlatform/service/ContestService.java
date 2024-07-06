@@ -2,6 +2,7 @@ package it.unicam.cs.LocalDevelopmentPlatform.service;
 
 import it.unicam.cs.LocalDevelopmentPlatform.contest.Contest;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.ContestRepo;
+import it.unicam.cs.LocalDevelopmentPlatform.repository.PuntoDiInteresseRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +19,12 @@ messe a disposizione nel relativo Controller
 public class ContestService {
     private final ContestRepo contestRepo;
     private final UserService userService;
-    private final PuntoDiInteresseService puntoDiInteresseService;
+    private final PuntoDiInteresseRepo puntoDiInteresseRepo;
 
-    public ContestService(ContestRepo contestRepo, UserService userService, PuntoDiInteresseService puntoDiInteresseService) {
+    public ContestService(ContestRepo contestRepo, UserService userService, PuntoDiInteresseRepo puntoDiInteresseRepo) {
         this.contestRepo = contestRepo;
         this.userService = userService;
-        this.puntoDiInteresseService = puntoDiInteresseService;
+        this.puntoDiInteresseRepo = puntoDiInteresseRepo;
     }
 
     /*
@@ -36,16 +37,7 @@ public class ContestService {
     /*
     Crea un nuovo contest controllando che i punti di interesse non siano già registrati ad un altro contest
      */
-    public Contest bandisciContest(Contest contest) {
-
-        if (puntoDiInteresseService.filtraPuntiDiInteresse(contest.getListaPunti()).isEmpty()) {
-            return null;
-        } else {
-            contest.setListaPunti(puntoDiInteresseService.filtraPuntiDiInteresse(contest.getListaPunti()));
-            contest.setListaPartecipanti(userService.filtraUtenti(contest.getListaPartecipanti()));
-            return contestRepo.save(contest);
-        }
-    }
+    public Contest bandisciContest(Contest contest) { return contestRepo.save(contest); }
 
     /*
     Aggiunge nuovi partecipanti ad un contest controllando che non siano già presenti

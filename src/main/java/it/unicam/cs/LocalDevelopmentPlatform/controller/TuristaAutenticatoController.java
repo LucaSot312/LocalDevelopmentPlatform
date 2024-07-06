@@ -17,7 +17,6 @@ public class TuristaAutenticatoController extends TuristaController{
 
     protected final UserService userService;
     protected final ContestService contestService;
-    protected final MediaService mediaService;
 
     public TuristaAutenticatoController(PuntoDiInteresseService puntoInteresseService,
                                         ItinerarioService itinerarioService,
@@ -25,10 +24,10 @@ public class TuristaAutenticatoController extends TuristaController{
                                         ContestService contestService,
                                         MediaService mediaService) {
         super(puntoInteresseService,
-                itinerarioService);
+                itinerarioService,
+                mediaService);
         this.userService = userService;
         this.contestService = contestService;
-        this.mediaService = mediaService;
     }
     /*
     Carica un nuovo itinerario
