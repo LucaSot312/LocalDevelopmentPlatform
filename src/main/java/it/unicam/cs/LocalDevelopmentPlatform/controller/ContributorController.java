@@ -18,11 +18,13 @@ public class ContributorController extends TuristaAutenticatoController {
                                  ItinerarioService itinerarioService,
                                  BufferPuntiService bufferPuntiService,
                                  ContestService contestService,
-                                 UserService userService) {
+                                 UserService userService,
+                                 MediaService mediaService) {
         super(puntoInteresseService,
                 itinerarioService,
                 userService,
-                contestService);
+                contestService,
+                mediaService);
         this.bufferPuntiService=bufferPuntiService;
     }
     /*

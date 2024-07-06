@@ -1,9 +1,6 @@
 package it.unicam.cs.LocalDevelopmentPlatform.controller;
 
-import it.unicam.cs.LocalDevelopmentPlatform.service.ContestService;
-import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
-import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoDiInteresseService;
-import it.unicam.cs.LocalDevelopmentPlatform.service.UserService;
+import it.unicam.cs.LocalDevelopmentPlatform.service.*;
 import it.unicam.cs.LocalDevelopmentPlatform.utenti.Ruolo;
 import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +18,13 @@ public class AdminController extends TuristaAutenticatoController {
     public AdminController(UserService userService,
                            PuntoDiInteresseService puntoInteresseService,
                            ItinerarioService itinerarioService,
-                           ContestService contestService) {
+                           ContestService contestService,
+                           MediaService mediaService) {
         super(puntoInteresseService,
                 itinerarioService,
                 userService,
-                contestService
+                contestService,
+                mediaService
         );
     }
     /*

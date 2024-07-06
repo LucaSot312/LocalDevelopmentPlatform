@@ -17,12 +17,15 @@ public class CuratoreController extends ContributorController{
                               ItinerarioService itinerarioService,
                               BufferPuntiService bufferPuntiService,
                               UserService userService,
-                              ContestService contestService) {
+                              ContestService contestService,
+                              MediaService mediaService) {
         super(puntoDiInteresseService,
                 itinerarioService,
                 bufferPuntiService,
                 contestService,
-                userService);
+                userService,
+                mediaService
+        );
     }
     /*
     Eliminazione di un punto di interesse tramite id

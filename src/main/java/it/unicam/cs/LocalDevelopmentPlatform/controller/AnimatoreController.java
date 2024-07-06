@@ -7,6 +7,8 @@ import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
+
 /*
     Classe controller per la gestione del profilo Animatore
  */
@@ -17,11 +19,13 @@ public class AnimatoreController extends TuristaAutenticatoController {
     public AnimatoreController(PuntoDiInteresseService puntoInteresseService,
                                ItinerarioService itinerarioService,
                                ContestService contestService,
-                               UserService userService) {
+                               UserService userService,
+                               MediaService mediaService) {
         super( puntoInteresseService,
                 itinerarioService,
                 userService,
-                contestService
+                contestService,
+                mediaService
                 );
     }
 
@@ -34,7 +38,7 @@ public class AnimatoreController extends TuristaAutenticatoController {
         return contestService.aggiungiPartecipanti(id,partecipantiAggiuntivi);}
 
     @GetMapping("/determinaVincitore/{id}")
-    public User determinaVincitore(@PathVariable int id){return contestService.determinaVincitore(id);}
+    public List<User> determinaVincitore(@PathVariable int id){return contestService.determinaVincitore(id);}
 
     @PutMapping("/eliminaContest/{id}")
     public boolean eliminaContest(@PathVariable int id) {return contestService.eliminaContest(id);}

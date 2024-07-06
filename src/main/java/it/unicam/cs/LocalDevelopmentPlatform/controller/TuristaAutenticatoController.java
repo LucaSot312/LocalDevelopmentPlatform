@@ -1,12 +1,10 @@
 package it.unicam.cs.LocalDevelopmentPlatform.controller;
 
 import it.unicam.cs.LocalDevelopmentPlatform.contest.Contest;
+import it.unicam.cs.LocalDevelopmentPlatform.contest.Media;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
-import it.unicam.cs.LocalDevelopmentPlatform.service.ContestService;
-import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
-import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoDiInteresseService;
-import it.unicam.cs.LocalDevelopmentPlatform.service.UserService;
+import it.unicam.cs.LocalDevelopmentPlatform.service.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,15 +17,18 @@ public class TuristaAutenticatoController extends TuristaController{
 
     protected final UserService userService;
     protected final ContestService contestService;
+    protected final MediaService mediaService;
 
     public TuristaAutenticatoController(PuntoDiInteresseService puntoInteresseService,
                                         ItinerarioService itinerarioService,
                                         UserService userService,
-                                        ContestService contestService) {
+                                        ContestService contestService,
+                                        MediaService mediaService) {
         super(puntoInteresseService,
                 itinerarioService);
         this.userService = userService;
         this.contestService = contestService;
+        this.mediaService = mediaService;
     }
     /*
     Carica un nuovo itinerario
@@ -65,7 +66,8 @@ public class TuristaAutenticatoController extends TuristaController{
     @GetMapping("/mieiContest/{idUtente}")
     public List<Contest> mieiContest(@PathVariable int idUtente){return contestService.mieiContest(idUtente); }
 
-
+    @PostMapping("/caricaMedia")
+    public Media caricaMedia(@RequestBody Media media){ return mediaService.caricaMedia(media); }
 
 
 

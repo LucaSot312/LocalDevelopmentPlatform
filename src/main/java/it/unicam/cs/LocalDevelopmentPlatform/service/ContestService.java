@@ -2,8 +2,6 @@ package it.unicam.cs.LocalDevelopmentPlatform.service;
 
 import it.unicam.cs.LocalDevelopmentPlatform.contest.Contest;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.ContestRepo;
-import it.unicam.cs.LocalDevelopmentPlatform.repository.PuntoDiInteresseRepo;
-import it.unicam.cs.LocalDevelopmentPlatform.repository.UserRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +9,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /*
 Classe Service per l'implementazione delle funzionalità relative ai contest
@@ -21,15 +17,11 @@ messe a disposizione nel relativo Controller
 @Service
 public class ContestService {
     private final ContestRepo contestRepo;
-    private final UserRepo userRepo;
-    private final PuntoDiInteresseRepo puntoDiInteresseRepo;
     private final UserService userService;
     private final PuntoDiInteresseService puntoDiInteresseService;
 
-    public ContestService(ContestRepo contestRepo, UserRepo userRepo, PuntoDiInteresseRepo puntoDiInteresseRepo, UserService userService, PuntoDiInteresseService puntoDiInteresseService) {
+    public ContestService(ContestRepo contestRepo, UserService userService, PuntoDiInteresseService puntoDiInteresseService) {
         this.contestRepo = contestRepo;
-        this.userRepo = userRepo;
-        this.puntoDiInteresseRepo = puntoDiInteresseRepo;
         this.userService = userService;
         this.puntoDiInteresseService = puntoDiInteresseService;
     }
@@ -83,13 +75,11 @@ public class ContestService {
     /*
     Determina il vincitore di un contest
     */
-    public User determinaVincitore(int Idcontest) {
-        //TODO il presente metodo va implementato dopo aver implementato login, sessione
-        // e anche il database dei media per poter calcolare chi ha caricato e quanto abbia caricato
-        // for che scorra tutti i media e sommi tutte le contribuzioni per ogni punto(id) raggruppandole per gli id di chi le carica e filtrando per avere solo gli id
-        // che sono nella lista partecipanti e poi facendo una classifica
-        // mediarepo.findAll().filter(idPunto=listaIdContest).for(count if iterato è stato caricato da
-
+    public List<User> determinaVincitore(int Idcontest) {
+        // una volta ottenute le liste di punti e partecipanti dall oggetto contest del quale voglio sapere il vincitore
+        // dopo aver ottenuto i media dalla repo filtro per le date di inizio e fine contest, per i punti sui quali si svolge
+        // e sui partecipanti che contribuiscono raggruppando e contando secondo i loro id, infine ritorno un hashmap che ad ogni
+        // idUtente associa il numero di contribuzioni
         return null;
     }
 
