@@ -35,7 +35,7 @@ public class ContestService {
     }
 
     /*
-    Crea un nuovo contest controllando che i punti di interesse non siano già registrati ad un altro contest
+    Crea un nuovo contest
      */
     public Contest bandisciContest(Contest contest) { return contestRepo.save(contest); }
 
