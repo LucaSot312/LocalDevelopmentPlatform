@@ -37,9 +37,9 @@ public class BufferPuntiService {
     public PuntoDiInteresse verificaPunto(int id) {
         BufferPunti temp = bufferPuntiRepo.findById(id).orElseThrow();
         PuntoDiInteresse punto = new PuntoDiInteresse(temp.getCoordinata(), temp.getNome(), temp.getTipologia(), temp.getDescrizione());
-        puntoDiInteresseRepo.save(punto);
         bufferPuntiRepo.deleteById(id);
-        return puntoDiInteresseRepo.findById(id);
+        return puntoDiInteresseRepo.save(punto);
+        //return puntoDiInteresseRepo.findById(id);
     }
 
     public boolean pulisciBuffer(int id) {
