@@ -54,6 +54,6 @@ public class AdminController extends TuristaAutenticatoController {
     public boolean eliminaUtente(@PathVariable int id) {return userService.eliminaUtente(id);}
 
     @PutMapping("/cambiaRuolo/{id}/{ruolo}")
-    public boolean cambiaRuolo(@PathVariable int id, @PathVariable Ruolo ruolo) {return userService.cambiaRuolo(id,ruolo);}
+    public User cambiaRuolo(@PathVariable int id, @PathVariable Ruolo ruolo) {return userService.cambiaRuolo(id,ruolo);}
 
 }

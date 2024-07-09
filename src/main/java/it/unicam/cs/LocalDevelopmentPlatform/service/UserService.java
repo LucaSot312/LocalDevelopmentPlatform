@@ -102,9 +102,12 @@ public class UserService{
     /*
     Cambia il ruolo di un utente
      */
-    public boolean cambiaRuolo(int idUtente, Ruolo ruolo){
-        userRepo.findById(idUtente).setRuolo(ruolo);
-        return userRepo.findById(idUtente).getRuolo().equals(ruolo);
+    public User cambiaRuolo(int idUtente, Ruolo ruolo){
+        User user=userRepo.findById(idUtente);
+        user.setRuolo(ruolo);
+        userRepo.deleteById(idUtente);
+        return userRepo.save(user);
+
 
     }
     /*
