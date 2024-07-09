@@ -23,9 +23,9 @@ public class Itinerario {
 
     public Itinerario(String nome, ArrayList<Integer> itinerario, String descrizione){
         this.nome = nome;
-        this.id = this.hashCode();
         this.itinerario = itinerario;
         this.descrizione = descrizione;
+        this.id = this.hashCode();
     }
 
     @Override

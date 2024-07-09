@@ -1,11 +1,14 @@
 package it.unicam.cs.LocalDevelopmentPlatform.controller;
 
+import it.unicam.cs.LocalDevelopmentPlatform.contest.Media;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.BufferPunti;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 import it.unicam.cs.LocalDevelopmentPlatform.service.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
 /*
     Classe controller per la gestione del profilo Curatore
  */
@@ -38,6 +41,11 @@ public class CuratoreController extends ContributorController{
      */
     @PutMapping("/eliminaItinerario/{id}")
     public boolean eliminaItinerario(@PathVariable int id){return itinerarioService.deleteItinerario(id);}
+    /*
+    Elimina un media dato l'id
+     */
+    @PutMapping("/eliminaMedia/{id}")
+    public Media eliminaMedia(@PathVariable int id){return mediaService.eliminaMedia(id);}
     /*
     Visualizza tutti i punti di interesse non verificati
      */

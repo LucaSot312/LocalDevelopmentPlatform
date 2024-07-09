@@ -1,6 +1,8 @@
 package it.unicam.cs.LocalDevelopmentPlatform.service;
 
+import it.unicam.cs.LocalDevelopmentPlatform.contest.Media;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
+import it.unicam.cs.LocalDevelopmentPlatform.repository.MediaRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.PuntoDiInteresseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +20,14 @@ public class PuntoDiInteresseService {
     private final PuntoDiInteresseRepo puntoDiInteresseRepo;
     private final ItinerarioService itinerarioService;
     private final ContestService contestService;
+    private final MediaService mediaService;
 
     @Autowired
-    public PuntoDiInteresseService(PuntoDiInteresseRepo puntoDiInteresseRepo, ItinerarioService itinerarioService, ContestService contestService) {
+    public PuntoDiInteresseService(PuntoDiInteresseRepo puntoDiInteresseRepo, ItinerarioService itinerarioService, ContestService contestService, MediaService mediaService) {
         this.puntoDiInteresseRepo = puntoDiInteresseRepo;
         this.itinerarioService = itinerarioService;
         this.contestService = contestService;
+        this.mediaService = mediaService;
     }
     /*
     Restituisce tutti i punti di interesse presenti nella mappa
@@ -43,6 +47,10 @@ public class PuntoDiInteresseService {
     public String deletePunto(int id){
 
         if(itinerarioService.checkPunti(id).isEmpty() && contestService.checkPunti(id).isEmpty()) {
+            for(Media media : mediaService.visualizzaMedia(id))
+            {
+                mediaService.eliminaMedia(media.get_id());
+            }
             puntoDiInteresseRepo.deleteById(id);
             return "Cancellazione andata a buon fine";
         }

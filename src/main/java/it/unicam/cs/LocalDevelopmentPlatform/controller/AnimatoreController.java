@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-    Classe controller per la gestione del profilo Animatore
+Classe controller per la gestione del profilo Animatore
  */
 @RestController
 @RequestMapping("Animatore")

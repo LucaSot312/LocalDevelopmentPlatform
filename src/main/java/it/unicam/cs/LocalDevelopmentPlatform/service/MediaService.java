@@ -5,6 +5,7 @@ import it.unicam.cs.LocalDevelopmentPlatform.repository.MediaRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MediaService {
@@ -25,5 +26,15 @@ public class MediaService {
                 .stream()
                 .filter(data -> data.get_idPuntoDiInteresse()==idPunto)
                 .toList();
+    }
+    public Media eliminaMedia(int idMedia){
+        Optional<Media> daEliminare=mediaRepo.findById(idMedia);
+        if(daEliminare.isPresent()){
+            mediaRepo.deleteById(idMedia);
+            return daEliminare.get();
+        }
+        return null;
+
+
     }
 }

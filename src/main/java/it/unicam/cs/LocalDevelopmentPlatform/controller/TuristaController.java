@@ -61,7 +61,9 @@ public class TuristaController {
     public PuntoDiInteresse segnalaPunto(@PathVariable int id, @PathVariable String motivo){
         return puntoDiInteresseService.segnalaPunto(id,motivo);
     }
-
+    /*
+    Visualizza tutti i media associati ad un punto di interesse
+     */
     @GetMapping("/visualizzaMedia/{idPunto}")
     public List<Media> visualizzaMedia(@PathVariable int idPunto){ return mediaService.visualizzaMedia(idPunto); }
 }
