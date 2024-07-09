@@ -6,5 +6,6 @@ public enum Ruolo {
     TURISTA,
     CONTRIBUTOR,
     CURATORE,
-    ADMIN
+    ADMIN,
+    ANIMATORE
 }
