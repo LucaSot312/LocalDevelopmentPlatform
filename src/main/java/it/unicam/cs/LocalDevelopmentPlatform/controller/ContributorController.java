@@ -35,9 +35,4 @@ public class ContributorController extends TuristaAutenticatoController {
         return bufferPuntiService.salvaPunto(punto);
 
     }
-    /*
-    Caricamento di un nuovo itinerario
-     */
-    @PostMapping("/caricaItinerario")
-    public Itinerario caricaItinerario(@RequestBody Itinerario itinerario){return itinerarioService.caricaItinerario(itinerario);}
 }
