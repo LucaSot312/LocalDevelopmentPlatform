@@ -79,14 +79,24 @@ public class UserService{
     Salva un punto di interesse nel profilo utente
      */
     public boolean salvaPunto(int idUtente, int idPunto) {
-        userRepo.findById(idUtente).getIdPuntiDiInteresse().add(idPunto);
+        User user=userRepo.findById(idUtente);
+        ArrayList<Integer> idPunti=user.getIdPuntiDiInteresse();
+        idPunti.add(idPunto);
+        user.setIdPuntiDiInteresse(idPunti);
+        userRepo.deleteById(idUtente);
+        userRepo.save(user);
         return userRepo.findById(idUtente).getIdPuntiDiInteresse().contains(idPunto);
     }
     /*
     Salva un itinerario nel profilo utente
      */
     public boolean salvaItinerario(int idUtente, int idItinerario) {
-        userRepo.findById(idUtente).getIdItinerari().add(idItinerario);
+        User user=userRepo.findById(idUtente);
+        ArrayList<Integer> idItinerari=user.getIdItinerari();
+        idItinerari.add(idItinerario);
+        user.setIdItinerari(idItinerari);
+        userRepo.deleteById(idUtente);
+        userRepo.save(user);
         return userRepo.findById(idUtente).getIdItinerari().contains(idItinerario);
     }
     /*
