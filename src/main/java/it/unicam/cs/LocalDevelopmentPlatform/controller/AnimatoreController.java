@@ -31,7 +31,7 @@ public class AnimatoreController extends TuristaAutenticatoController {
     @PostMapping("/bandisciContest")
     public Contest bandisciContest(@RequestBody Contest contest) {return contestService.bandisciContest(contest); }
 
-    @PutMapping("/aggiungiPartecipanti/{idContest}/{idPartecipante")
+    @PutMapping("/aggiungiPartecipante/{idContest}/{idPartecipante")
     public Contest aggiungiPartecipante(@PathVariable int idContest, @PathVariable int idPartecipante) {
         return contestService.aggiungiPartecipante(idContest,idPartecipante);}
 
