@@ -6,7 +6,6 @@ import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -32,10 +31,9 @@ public class AnimatoreController extends TuristaAutenticatoController {
     @PostMapping("/bandisciContest")
     public Contest bandisciContest(@RequestBody Contest contest) {return contestService.bandisciContest(contest); }
 
-    @PutMapping("/aggiungiPartecipanti/{id}")
-    public Contest aggiungiPartecipanti(@PathVariable int id,@RequestBody ArrayList<Integer> partecipantiAggiuntivi) {
-        //TODO metodo non funzionante a causa di databind errati di JacksonData
-        return contestService.aggiungiPartecipanti(id,partecipantiAggiuntivi);}
+    @PutMapping("/aggiungiPartecipanti/{idContest}/{idPartecipante")
+    public Contest aggiungiPartecipante(@PathVariable int idContest, @PathVariable int idPartecipante) {
+        return contestService.aggiungiPartecipante(idContest,idPartecipante);}
 
     @GetMapping("/determinaVincitore/{id}")
     public List<User> determinaVincitore(@PathVariable int id){return contestService.determinaVincitore(id);}

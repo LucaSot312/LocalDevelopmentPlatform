@@ -40,27 +40,18 @@ public class ContestService {
     public Contest bandisciContest(Contest contest) { return contestRepo.save(contest); }
 
     /*
-    Aggiunge nuovi partecipanti ad un contest controllando che non siano già presenti
+    Aggiunge un nuovo partecipante ad un contest controllando che non sia già presente
      */
-    public Contest aggiungiPartecipanti(int idContest, ArrayList<Integer> listaPartecipanti) {
-        userService.filtraUtenti(listaPartecipanti);
-        if (userService.filtraUtenti(listaPartecipanti).isEmpty()) {
+    public Contest aggiungiPartecipante(int idContest, int idPartecipante) {
+        if (contestRepo.findById(idContest).getListaPartecipanti().contains(idPartecipante)) {
             return null;
         } else {
-            List<Integer> partecipantiVecchi = getContestById(idContest).getListaPartecipanti();
-            ArrayList<Integer> partecipantiNuovi = userService.filtraUtenti(listaPartecipanti);
-            ArrayList<Integer> partecipantiFinali = new ArrayList<>();
-            partecipantiFinali.addAll(partecipantiVecchi);
-            partecipantiFinali.addAll(partecipantiNuovi);
-            Set<Integer> uniqueSet=new HashSet<>(partecipantiFinali);
-            partecipantiFinali.clear();
-            partecipantiFinali.addAll(uniqueSet);
-            
             Contest contest= contestRepo.findById(idContest);
-            contest.setListaPartecipanti(partecipantiFinali);
+            ArrayList<Integer> partecipanti=contest.getListaPartecipanti();
+            partecipanti.add(idPartecipante);
+            contest.setListaPartecipanti(partecipanti);
             contestRepo.deleteById(idContest);
-            contestRepo.save(contest);
-            return contest;
+            return contestRepo.save(contest);
         }
     }
 
