@@ -1,15 +1,15 @@
 package it.unicam.cs.LocalDevelopmentPlatform.service;
 
 import it.unicam.cs.LocalDevelopmentPlatform.contest.Contest;
+import it.unicam.cs.LocalDevelopmentPlatform.contest.Media;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.ContestRepo;
+import it.unicam.cs.LocalDevelopmentPlatform.repository.MediaRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.PuntoDiInteresseRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 import org.springframework.stereotype.Service;
+import java.util.stream.Collectors;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /*
 Classe Service per l'implementazione delle funzionalità relative ai contest
@@ -20,11 +20,13 @@ public class ContestService {
     private final ContestRepo contestRepo;
     private final UserService userService;
     private final PuntoDiInteresseRepo puntoDiInteresseRepo;
+    private final MediaRepo mediaRepo;
 
-    public ContestService(ContestRepo contestRepo, UserService userService, PuntoDiInteresseRepo puntoDiInteresseRepo) {
+    public ContestService(ContestRepo contestRepo, UserService userService, PuntoDiInteresseRepo puntoDiInteresseRepo, MediaRepo mediaRepo) {
         this.contestRepo = contestRepo;
         this.userService = userService;
         this.puntoDiInteresseRepo = puntoDiInteresseRepo;
+        this.mediaRepo = mediaRepo;
     }
 
     /*
@@ -58,12 +60,31 @@ public class ContestService {
     /*
     Determina il vincitore di un contest
     */
-    public List<User> determinaVincitore(int Idcontest) {
-        // una volta ottenute le liste di punti e partecipanti dall oggetto contest del quale voglio sapere il vincitore
-        // dopo aver ottenuto i media dalla repo filtro per le date di inizio e fine contest, per i punti sui quali si svolge
-        // e sui partecipanti che contribuiscono raggruppando e contando secondo i loro id, infine ritorno un hashmap che ad ogni
-        // idUtente associa il numero di contribuzioni
-        return null;
+    public List<Integer> determinaVincitore(int idContest) {
+        Contest contest= contestRepo.findById(idContest);
+        List<Media> mediaContributions = mediaRepo.findBy_idPuntoDiInteresseInAnd_idContest(contest.getListaPunti(), contest.get_id());
+
+        // Filter out media contributions that were uploaded before the contest's dataInizio or after the contest's dataFine
+        mediaContributions = mediaContributions.stream()
+                .filter(media -> media.get_dataCaricamento().after(contest.getDataInizio()) && media.get_dataCaricamento().before(contest.getDataFine()) || media.get_dataCaricamento().equals(contest.getDataInizio()) || media.get_dataCaricamento().equals(contest.getDataFine()))
+                .collect(Collectors.toList());
+
+        // Group media contributions by contributor ID and count the number of contributions for each contributor
+        Map<Integer, Long> contributorCounts = mediaContributions.stream()
+                .collect(Collectors.groupingBy(Media::get_idUploader, Collectors.counting()));
+
+        // Find the maximum count
+        long maxCount = contributorCounts.values().stream()
+                .max(Long::compare)
+                .orElse(0L);
+
+        // Find all contributors with the maximum count
+        List<Integer> winnerContributorIds = contributorCounts.entrySet().stream()
+                .filter(entry -> entry.getValue() == maxCount)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+
+        return winnerContributorIds;
     }
 
     /*
