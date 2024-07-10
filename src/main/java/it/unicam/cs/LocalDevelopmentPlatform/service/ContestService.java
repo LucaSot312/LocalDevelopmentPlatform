@@ -64,21 +64,21 @@ public class ContestService {
         Contest contest= contestRepo.findById(idContest);
         List<Media> mediaContributions = mediaRepo.findBy_idPuntoDiInteresseInAnd_idContest(contest.getListaPunti(), contest.get_id());
 
-        // Filter out media contributions that were uploaded before the contest's dataInizio or after the contest's dataFine
+        // Filtra i media in base alla data di caricamento e alla data di creazione e di fine di un contest
         mediaContributions = mediaContributions.stream()
-                .filter(media -> media.get_dataCaricamento().after(contest.getDataInizio()) && media.get_dataCaricamento().before(contest.getDataFine()) || media.get_dataCaricamento().equals(contest.getDataInizio()) || media.get_dataCaricamento().equals(contest.getDataFine()))
+                .filter(media -> media.get_dataCaricamento().after(contest.getDataInizio()) && media.get_dataCaricamento().before(contest.getDataFine()))
                 .collect(Collectors.toList());
 
-        // Group media contributions by contributor ID and count the number of contributions for each contributor
+        // Raggruppa i media in base all'id dell'utente e conta ciascuna contribuzione
         Map<Integer, Long> contributorCounts = mediaContributions.stream()
                 .collect(Collectors.groupingBy(Media::get_idUploader, Collectors.counting()));
 
-        // Find the maximum count
+        // Trova il massimo tra il numero delle contribuzioni
         long maxCount = contributorCounts.values().stream()
                 .max(Long::compare)
                 .orElse(0L);
 
-        // Find all contributors with the maximum count
+        // Cerca gli utenti con il massimo numero di contribuzioni
         List<Integer> winnerContributorIds = contributorCounts.entrySet().stream()
                 .filter(entry -> entry.getValue() == maxCount)
                 .map(Map.Entry::getKey)
