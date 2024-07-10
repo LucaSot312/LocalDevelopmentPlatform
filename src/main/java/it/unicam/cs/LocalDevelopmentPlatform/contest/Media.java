@@ -90,4 +90,14 @@ public class Media {
     public void set_dataCaricamento(Date _dataCaricamento) {
         this._dataCaricamento = _dataCaricamento;
     }
+
+    @Override
+    public String toString() {
+        return "Media{" +
+                "_id=" + _id +
+                ", _idUploader=" + _idUploader +
+                ", _idPuntoDiInteresse=" + _idPuntoDiInteresse +
+                ", _dataCaricamento=" + _dataCaricamento +
+                '}';
+    }
 }

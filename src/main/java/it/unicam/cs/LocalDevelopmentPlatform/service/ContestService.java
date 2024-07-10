@@ -5,7 +5,6 @@ import it.unicam.cs.LocalDevelopmentPlatform.contest.Media;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.ContestRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.MediaRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.PuntoDiInteresseRepo;
-import it.unicam.cs.LocalDevelopmentPlatform.utenti.User;
 import org.springframework.stereotype.Service;
 import java.util.stream.Collectors;
 
@@ -62,29 +61,27 @@ public class ContestService {
     */
     public List<Integer> determinaVincitore(int idContest) {
         Contest contest= contestRepo.findById(idContest);
-        List<Media> mediaContributions = mediaRepo.findBy_idPuntoDiInteresseInAnd_idContest(contest.getListaPunti(), contest.get_id());
+        List<Media> mediaContributions = mediaRepo.findAll();
+        List<Integer> listaPartecipanti = contest.getListaPartecipanti();
+        List<Integer> listaPunti = contest.getListaPunti();
 
-        // Filtra i media in base alla data di caricamento e alla data di creazione e di fine di un contest
-        mediaContributions = mediaContributions.stream()
-                .filter(media -> media.get_dataCaricamento().after(contest.getDataInizio()) && media.get_dataCaricamento().before(contest.getDataFine()))
-                .collect(Collectors.toList());
+        mediaContributions.removeIf(var -> var.get_dataCaricamento().after(contest.getDataFine()) || var.get_dataCaricamento().before(contest.getDataInizio()));
+        System.out.println(mediaContributions.toString());
+        mediaContributions.removeIf(var -> !listaPunti.contains(var.get_idPuntoDiInteresse()));
+        System.out.println(mediaContributions.toString());
+        mediaContributions.removeIf(var -> !listaPartecipanti.contains(var.get_idUploader()));
+        System.out.println(mediaContributions.toString());
 
-        // Raggruppa i media in base all'id dell'utente e conta ciascuna contribuzione
-        Map<Integer, Long> contributorCounts = mediaContributions.stream()
-                .collect(Collectors.groupingBy(Media::get_idUploader, Collectors.counting()));
+        // Group media by uploader ID
+        Map<Integer, List<Media>> uploaderMediaMap = mediaContributions.stream()
+                .collect(Collectors.groupingBy(Media::get_idUploader));
 
-        // Trova il massimo tra il numero delle contribuzioni
-        long maxCount = contributorCounts.values().stream()
-                .max(Long::compare)
-                .orElse(0L);
-
-        // Cerca gli utenti con il massimo numero di contribuzioni
-        List<Integer> winnerContributorIds = contributorCounts.entrySet().stream()
-                .filter(entry -> entry.getValue() == maxCount)
+        List<Integer> vincitori = uploaderMediaMap.entrySet().stream()
+                .sorted((e1, e2) -> e2.getValue().size() - e1.getValue().size())
+                .limit(2) // replace N with the desired number of top uploaders
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
-
-        return winnerContributorIds;
+        return  vincitori;
     }
 
     /*
