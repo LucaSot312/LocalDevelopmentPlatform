@@ -18,7 +18,7 @@ public class Contest {
     /*
     Id dell'animatore che crea il contest
      */
-    private int IdAnimatore;
+    private int idAnimatore;
     /*
     Data di inizio del contest
      */
@@ -38,7 +38,8 @@ public class Contest {
     private ArrayList<Integer> listaPartecipanti;
 
     public Contest(Date dataFine, Date dataInizio,
-                   ArrayList<Integer> listaPunti,ArrayList<Integer> listaPartecipanti) {
+                   ArrayList<Integer> listaPunti,ArrayList<Integer> listaPartecipanti, int idAnimatore){
+        this.idAnimatore = idAnimatore;
         this.dataFine = dataFine;
         this.dataInizio = dataInizio;
         this.listaPunti = listaPunti;
@@ -69,11 +70,11 @@ public class Contest {
     }
 
     public int getIdAnimatore() {
-        return IdAnimatore;
+        return idAnimatore;
     }
 
     public void setIdAnimatore(int idAnimatore) {
-        IdAnimatore = idAnimatore;
+        this.idAnimatore = idAnimatore;
     }
 
     public Date getDataInizio() {
@@ -96,11 +97,11 @@ public class Contest {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Contest contest)) return false;
-        return _id == contest._id && IdAnimatore == contest.IdAnimatore && Objects.equals(dataInizio, contest.dataInizio) && Objects.equals(dataFine, contest.dataFine) && Objects.equals(getListaPunti(), contest.getListaPunti()) && Objects.equals(getListaPartecipanti(), contest.getListaPartecipanti());
+        return _id == contest._id && idAnimatore == contest.idAnimatore && Objects.equals(dataInizio, contest.dataInizio) && Objects.equals(dataFine, contest.dataFine) && Objects.equals(getListaPunti(), contest.getListaPunti()) && Objects.equals(getListaPartecipanti(), contest.getListaPartecipanti());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(IdAnimatore, dataInizio, dataFine, getListaPunti());
+        return Objects.hash(idAnimatore, dataInizio, dataFine, getListaPunti());
     }
 }
