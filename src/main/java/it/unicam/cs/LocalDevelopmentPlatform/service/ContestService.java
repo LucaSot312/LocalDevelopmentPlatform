@@ -116,6 +116,9 @@ public class ContestService {
     Restituisce  tutti i contest ai quali un utente è iscritto
      */
     public List<Contest> mieiContest(int idUtente) {
+        //TODO inserisci controllo aggiuntivo su ruolo ed effetto diversificato
+        // se sei ANIMATORE vengono visualizzati sia i banditi che gli iscritti
+        // se sei turista autenticato solo gli iscritti
         ArrayList<Contest> mieiContest = new ArrayList<>();
         for (Contest contest : contestRepo.findAll()) {
             if (contest.getListaPartecipanti().contains(idUtente)) {
