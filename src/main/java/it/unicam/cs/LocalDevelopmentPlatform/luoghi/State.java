@@ -8,7 +8,7 @@ import java.util.Objects;
 Entity class per la rappresentazione di un punto di interesse appena inserito dall'utente, quindi ancora da verificare
  */
 @Document(collection = "bufferPunti")
-public class BufferPunti {
+public abstract class State {
     @Id
     private int _id;
 
@@ -17,7 +17,7 @@ public class BufferPunti {
     private TipologiaPunto tipologia;
     private String descrizione;
 
-    public BufferPunti(Coordinata coordinata, String nome, TipologiaPunto tipologia, String descrizione) {
+    public State(Coordinata coordinata, String nome, TipologiaPunto tipologia, String descrizione) {
         this.coordinata = coordinata;
         this.nome = nome;
         this.tipologia = tipologia;
@@ -28,7 +28,7 @@ public class BufferPunti {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof BufferPunti that)) return false;
+        if (!(o instanceof State that)) return false;
         return _id == that._id && Objects.equals(coordinata, that.coordinata) && Objects.equals(nome, that.nome)
                 && tipologia == that.tipologia && Objects.equals(descrizione, that.descrizione);
     }

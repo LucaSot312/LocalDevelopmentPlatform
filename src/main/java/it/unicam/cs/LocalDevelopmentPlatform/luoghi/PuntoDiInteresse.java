@@ -1,49 +1,31 @@
 package it.unicam.cs.LocalDevelopmentPlatform.luoghi;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-/*
-Entity class per la rappresentazione di un punto di interesse verificato
- */
-@Document(collection = "PuntoDiInteresse")
-public class PuntoDiInteresse extends BufferPunti {
-    private boolean verificato;
-    private boolean segnalato;
-    private String motivoSegnalazione;
+import java.util.Objects;
 
-    public PuntoDiInteresse(Coordinata coordinata, String nome, TipologiaPunto tipologia, String descrizione) {
-        super(coordinata, nome, tipologia, descrizione);
-        this.verificato = true;
-        this.segnalato = false;
-        this.motivoSegnalazione = "";
-        super.set_id(Math.abs(super.hashCode()));
+public class PuntoDiInteresse {
+
+    private State stato;
+
+    public PuntoDiInteresse(State stato) {
+        this.stato = stato;
     }
 
-    public void setSegnalato(boolean segnalato) {
-        this.segnalato = segnalato;
+    public void verifica() {
+        this.stato= new Verificato(this.stato.getCoordinata(), this.stato.getNome(), this.stato.getTipologia(), this.stato.getDescrizione());
+    }
+    public State getStato() {
+        return stato;
     }
 
-    public void setVerificato(boolean verificato) {
-        this.verificato = verificato;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PuntoDiInteresse that)) return false;
+        return Objects.equals(stato, that.stato);
     }
 
-    public void segnala(String motivo){
-        this.motivoSegnalazione = this.motivoSegnalazione.concat(motivo+";");
-        this.setSegnalato(true);
-    }
-
-    public void removeSegnalato(){
-        this.setSegnalato(false);
-        this.motivoSegnalazione = "";
-    }
-    public boolean isVerificato() {return verificato; }
-
-    public boolean isSegnalato() {return segnalato; }
-
-    public String getMotivoSegnalazione() {
-        return motivoSegnalazione;
-    }
-
-    public void setMotivoSegnalazione(String motivoSegnalazione) {
-        this.motivoSegnalazione = motivoSegnalazione;
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(stato);
     }
 }

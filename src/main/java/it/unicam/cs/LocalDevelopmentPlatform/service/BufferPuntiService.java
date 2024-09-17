@@ -1,7 +1,7 @@
 package it.unicam.cs.LocalDevelopmentPlatform.service;
 
-import it.unicam.cs.LocalDevelopmentPlatform.luoghi.BufferPunti;
-import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
+import it.unicam.cs.LocalDevelopmentPlatform.luoghi.State;
+import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Verificato;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.BufferPuntiRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.PuntoDiInteresseRepo;
 import org.springframework.stereotype.Service;
@@ -22,21 +22,21 @@ public class BufferPuntiService {
         this.puntoDiInteresseRepo = puntoDiInteresseRepo;
     }
 
-    public BufferPunti salvaPunto(BufferPunti punto) {
+    public State salvaPunto(State punto) {
         return bufferPuntiRepo.save(punto);
 
     }
 
-    public List<BufferPunti> getAll() {
+    public List<State> getAll() {
         return bufferPuntiRepo.findAll();
     }
     /*
     Metodo per la verifica di un punto di interesse: crea una copia del punto non verificato
     istanziandola con il tipo del punto verificato, inizializza i nuovi campi e la salva sul db
      */
-    public PuntoDiInteresse verificaPunto(int id) {
-        BufferPunti temp = bufferPuntiRepo.findById(id).orElseThrow();
-        PuntoDiInteresse punto = new PuntoDiInteresse(temp.getCoordinata(), temp.getNome(), temp.getTipologia(), temp.getDescrizione());
+    public Verificato verificaPunto(int id) {
+        State temp = bufferPuntiRepo.findById(id).orElseThrow();
+        Verificato punto = new Verificato(temp.getCoordinata(), temp.getNome(), temp.getTipologia(), temp.getDescrizione());
         bufferPuntiRepo.deleteById(id);
         return puntoDiInteresseRepo.save(punto);
         //return puntoDiInteresseRepo.findById(id);

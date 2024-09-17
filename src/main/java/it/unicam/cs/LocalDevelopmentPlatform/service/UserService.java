@@ -1,7 +1,7 @@
 package it.unicam.cs.LocalDevelopmentPlatform.service;
 
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
-import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
+import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Verificato;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.ItinerarioRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.PuntoDiInteresseRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.UserRepo;
@@ -63,7 +63,7 @@ public class UserService{
     /*
     Restituisce i punti di interesse salvati nel profilo utente
      */
-    public List<PuntoDiInteresse> mieiPunti(int id) {
+    public List<Verificato> mieiPunti(int id) {
         List<Integer> listaPunti = (userRepo.findById(id)).getIdPuntiDiInteresse();
         return puntoDiInteresseRepo.findAllById(listaPunti);
     }
