@@ -2,7 +2,7 @@ package it.unicam.cs.LocalDevelopmentPlatform.controller;
 
 import it.unicam.cs.LocalDevelopmentPlatform.contest.Media;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
-import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Verificato;
+import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 import it.unicam.cs.LocalDevelopmentPlatform.service.ItinerarioService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.MediaService;
 import it.unicam.cs.LocalDevelopmentPlatform.service.PuntoDiInteresseService;
@@ -32,12 +32,12 @@ public class TuristaController {
     Visualizza tutti i punti di interesse esistenti
      */
     @GetMapping("/punti")
-    public List<Verificato> getAllPunti() { return puntoDiInteresseService.getAllPunti(); }
+    public List<PuntoDiInteresse> getAllPunti() { return puntoDiInteresseService.getAllPuntiVerificati(); }
     /*
     Visualizza un punto di interesse tramite id
      */
     @GetMapping("/punto/{id}")
-    public Verificato getPuntoById(@PathVariable int id) {
+    public PuntoDiInteresse getPuntoById(@PathVariable int id) {
         return puntoDiInteresseService.getPuntoById(id);
     }
     /*
@@ -51,14 +51,14 @@ public class TuristaController {
     Visualizza un itinerario tramite id
      */
     @GetMapping("/itinerario/{id}")
-    public List<Verificato> getItinerarioByID(@PathVariable int id) {
+    public List<PuntoDiInteresse> getItinerarioByID(@PathVariable int id) {
         return itinerarioService.getPuntiItinerario(id);
     }
     /*
     Segnala un punto di interesse fornendo un motivo
      */
     @PutMapping("/segnalaPunto/{id}/{motivo}")
-    public Verificato segnalaPunto(@PathVariable int id, @PathVariable String motivo){
+    public PuntoDiInteresse segnalaPunto(@PathVariable int id, @PathVariable String motivo){
         return puntoDiInteresseService.segnalaPunto(id,motivo);
     }
     /*

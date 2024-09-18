@@ -1,6 +1,8 @@
 package it.unicam.cs.LocalDevelopmentPlatform.service;
 
 import it.unicam.cs.LocalDevelopmentPlatform.contest.Media;
+import it.unicam.cs.LocalDevelopmentPlatform.luoghi.NonVerificato;
+import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Verificato;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.PuntoDiInteresseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,24 +23,51 @@ public class PuntoDiInteresseService {
     private final MediaService mediaService;
 
     @Autowired
-    public PuntoDiInteresseService(PuntoDiInteresseRepo puntoDiInteresseRepo, ItinerarioService itinerarioService, ContestService contestService, MediaService mediaService) {
+    public PuntoDiInteresseService(PuntoDiInteresseRepo puntoDiInteresseRepo,
+                                   ItinerarioService itinerarioService,
+                                   ContestService contestService,
+                                   MediaService mediaService)
+    {
         this.puntoDiInteresseRepo = puntoDiInteresseRepo;
         this.itinerarioService = itinerarioService;
         this.contestService = contestService;
         this.mediaService = mediaService;
     }
+
+  public PuntoDiInteresse salvaPunto(PuntoDiInteresse puntoDiInteresse)
+  {
+      if(puntoDiInteresse.getStato() instanceof Verificato){ return null; }
+      return puntoDiInteresseRepo.save(puntoDiInteresse);
+  }
     /*
-    Restituisce tutti i punti di interesse presenti nella mappa
+    Restituisce tutti i punti di interesse presenti
      */
-    public List<Verificato> getAllPunti() {
-        return puntoDiInteresseRepo.findAll();
+    public List<PuntoDiInteresse> getAllPuntiVerificati() {
+        return puntoDiInteresseRepo
+                .findAll()
+                .stream()
+                .filter(p -> p.getStato() instanceof Verificato)
+                .toList();
     }
+
+    /*
+    Restituisce tutti i punti di interesse non verificati
+    */
+    public List<PuntoDiInteresse> getAllPuntiNonVerificati() {
+        return puntoDiInteresseRepo
+                .findAll()
+                .stream()
+                .filter(p -> p.getStato() instanceof NonVerificato)
+                .toList();
+    }
+
     /*
     Restituisce un punto di interesse dato il suo id
      */
-    public Verificato getPuntoById(int id) {
+    public PuntoDiInteresse getPuntoById(int id) {
         return puntoDiInteresseRepo.findById(id);
     }
+
     /*
     Cancella un punto di interesse dalla mappa dato il suo id, controllando se è presente o meno all'interno di itinerari e/o contest
      */
@@ -63,27 +92,37 @@ public class PuntoDiInteresseService {
     Metodo per la segnalazione di un punto di interesse: crea una copia del punto in questione, chiama il metodo segnala()
     con associato il motivo della segnalazione e reinserisce il nuovo punto di interesse segnalato sul db
      */
-    public Verificato segnalaPunto(int id, String motivo) {
-        Verificato temp=puntoDiInteresseRepo.findById(id);
+    public PuntoDiInteresse segnalaPunto(int id, String motivo) {
+        PuntoDiInteresse temp=puntoDiInteresseRepo.findById(id);
         puntoDiInteresseRepo.deleteById(id);
-        temp.segnala(motivo);
-        puntoDiInteresseRepo.save(temp);
-        return temp;
+        if(temp.getStato() instanceof Verificato){
+            ((Verificato) temp.getStato()).segnala(motivo);
+            return puntoDiInteresseRepo.save(temp);
+        }
+        return null;
     }
+
     /*
     Restituisce tutti i punti di interesse segnalati
      */
-    public List<Verificato> getSegnalati() {
+    public List<PuntoDiInteresse> getSegnalati() {
         return puntoDiInteresseRepo.allSegnalati();
     }
 
     /*
     Metodo per la rimozione della segnalazione con funzionamento analogo a segnalaPunto()
      */
-    public Verificato removeSegnalato(int id) {
-        Verificato temp=puntoDiInteresseRepo.findById(id);
+    public PuntoDiInteresse removeSegnalato(int id) {
+        PuntoDiInteresse temp=puntoDiInteresseRepo.findById(id);
         puntoDiInteresseRepo.deleteById(id);
-        temp.removeSegnalato();
-        return puntoDiInteresseRepo.save(temp);
+        if(temp.getStato() instanceof Verificato){
+            ((Verificato) temp.getStato()).removeSegnalato();
+            return puntoDiInteresseRepo.save(temp);
+        }
+        return null;
+    }
+
+    public PuntoDiInteresse verificaPunto(int id) {
+        return puntoDiInteresseRepo.findById(id).verifica();
     }
 }

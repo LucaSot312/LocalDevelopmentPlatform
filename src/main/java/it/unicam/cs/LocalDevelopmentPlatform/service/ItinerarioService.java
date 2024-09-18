@@ -1,6 +1,6 @@
 package it.unicam.cs.LocalDevelopmentPlatform.service;
 
-import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Verificato;
+import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.PuntoDiInteresseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,14 +54,14 @@ public class ItinerarioService {
     successivamente si ottiene una lista degli id dei punti che lo compongono e infine per ogni elemento della lista
     si chiama il metodo findById() che ritorna il punto di interesse in questione
      */
-    public List<Verificato> getPuntiItinerario(int id) {
+    public List<PuntoDiInteresse> getPuntiItinerario(int id) {
             Itinerario itinerario = getItinerarioById(id);
             List<Integer> puntiIds = itinerario.getItinerario();
-            List<Verificato> puntiDiInteresse = new ArrayList<>();
+            List<PuntoDiInteresse> puntiDiInteresse = new ArrayList<>();
             for (Integer puntoId : puntiIds) {
-                Verificato verificato = puntoDiInteresseRepo.findById(puntoId)
+                PuntoDiInteresse punto = puntoDiInteresseRepo.findById(puntoId)
                         .orElseThrow(() -> new RuntimeException("Punto di interesse not found"));
-                puntiDiInteresse.add(verificato);
+                puntiDiInteresse.add(punto);
             }
             return puntiDiInteresse;
         }

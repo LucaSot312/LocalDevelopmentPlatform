@@ -33,40 +33,56 @@ public class TuristaAutenticatoController extends TuristaController{
     Carica un nuovo itinerario
      */
     @PostMapping("/caricaItinerario")
-    public Itinerario caricaItinerario(@RequestBody Itinerario itinerario){return itinerarioService.caricaItinerario(itinerario); }
+    public Itinerario caricaItinerario(@RequestBody Itinerario itinerario){
+        return itinerarioService.caricaItinerario(itinerario);
+    }
     /*
     Salva un punto di interesse nel profilo utente
      */
     @PutMapping("/salvaPunto/{idUtente}/{idPunto}")
-    public boolean salvaPunto(@PathVariable int idUtente, @PathVariable int idPunto){return userService.salvaPunto(idUtente,idPunto); }
+    public boolean salvaPunto(@PathVariable int idUtente, @PathVariable int idPunto){
+        return userService.salvaPunto(idUtente,idPunto);
+    }
     /*
     Visualizza i punti di interesse salvati nel profilo
      */
    @GetMapping("/mieiPunti/{id}")
-    public List<Verificato> mieiPunti(@PathVariable int id){return userService.mieiPunti(id); }
+    public List<Verificato> mieiPunti(@PathVariable int id){
+       return userService.mieiPunti(id);
+   }
     /*
     Salva un itinerario nel profilo utente
      */
     @PutMapping("/salvaItinerario/{idUtente}/{idItinerario}")
-    public boolean salvaItinerario(@PathVariable int idUtente, @PathVariable int idItinerario){return userService.salvaItinerario(idUtente, idItinerario); }
+    public boolean salvaItinerario(@PathVariable int idUtente, @PathVariable int idItinerario){
+        return userService.salvaItinerario(idUtente, idItinerario);
+    }
     /*
     Visualizza gli itinerari salvati nel profilo
      */
     @GetMapping("/mieiItinierari/{id}")
-    public List<Itinerario> mieiItinerari(@PathVariable int id){return userService.mieiItinerari(id); }
+    public List<Itinerario> mieiItinerari(@PathVariable int id){
+        return userService.mieiItinerari(id);
+    }
     /*
     Visualizza tutti i contest attivi
      */
     @GetMapping("/contest")
-    public List<Contest> contest(){return contestService.allContest();}
+    public List<Contest> contest(){
+        return contestService.allContest();
+    }
     /*
     Visualizza i punti di interesse salvati nel profilo
      */
     @GetMapping("/mieiContest/{idUtente}")
-    public List<Contest> mieiContest(@PathVariable int idUtente){return contestService.mieiContest(idUtente); }
+    public List<Contest> mieiContest(@PathVariable int idUtente){
+        return contestService.mieiContest(idUtente);
+    }
 
     @PostMapping("/caricaMedia")
-    public Media caricaMedia(@RequestBody Media media){ return mediaService.caricaMedia(media); }
+    public Media caricaMedia(@RequestBody Media media){
+        return mediaService.caricaMedia(media);
+    }
 
 
 

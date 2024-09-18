@@ -1,5 +1,6 @@
 package it.unicam.cs.LocalDevelopmentPlatform.controller;
 
+import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.State;
 import it.unicam.cs.LocalDevelopmentPlatform.service.*;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("contributor")
 public class ContributorController extends TuristaAutenticatoController {
 
-    protected final BufferPuntiService bufferPuntiService;
-
     public ContributorController(PuntoDiInteresseService puntoInteresseService,
                                  ItinerarioService itinerarioService,
-                                 BufferPuntiService bufferPuntiService,
                                  ContestService contestService,
                                  UserService userService,
                                  MediaService mediaService) {
@@ -24,14 +22,14 @@ public class ContributorController extends TuristaAutenticatoController {
                 userService,
                 contestService,
                 mediaService);
-        this.bufferPuntiService=bufferPuntiService;
+
     }
     /*
     Caricamento di un nuovo punto di interesse in attesa di essere verificato
      */
     @PostMapping(value = "/caricaPunto")
-    public State caricaPunto(@RequestBody State punto) {
-        return bufferPuntiService.salvaPunto(punto);
+    public PuntoDiInteresse caricaPunto(@RequestBody PuntoDiInteresse punto) {
+        return puntoDiInteresseService.salvaPunto(punto);
 
     }
 }

@@ -10,8 +10,13 @@ public class PuntoDiInteresse {
         this.stato = stato;
     }
 
-    public void verifica() {
-        this.stato= new Verificato(this.stato.getCoordinata(), this.stato.getNome(), this.stato.getTipologia(), this.stato.getDescrizione());
+    public PuntoDiInteresse verifica() {
+        this.stato= new Verificato(
+                this.stato.getCoordinata(),
+                this.stato.getNome(),
+                this.stato.getTipologia(),
+                this.stato.getDescrizione());
+        return this;
     }
     public State getStato() {
         return stato;
