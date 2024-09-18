@@ -1,7 +1,7 @@
 package it.unicam.cs.LocalDevelopmentPlatform.service;
 
 import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Itinerario;
-import it.unicam.cs.LocalDevelopmentPlatform.luoghi.Verificato;
+import it.unicam.cs.LocalDevelopmentPlatform.luoghi.PuntoDiInteresse;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.ItinerarioRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.PuntoDiInteresseRepo;
 import it.unicam.cs.LocalDevelopmentPlatform.repository.UserRepo;
@@ -35,11 +35,11 @@ public class UserService{
     /*
     Restituisce un utente dato l'username
      */
-    public User loadUserByUsername(String username) { return userRepo.findByUsername(username); }
+    public User findByUsername(String username) { return userRepo.findByUsername(username); }
     /*
     Restituisce un utente dato l'username
      */
-    public User findUserById(int id) { return userRepo.findById(id); }
+    public User findById(int id) { return userRepo.findById(id); }
     /*
     Elimina un utente dato l'username
      */
@@ -63,7 +63,7 @@ public class UserService{
     /*
     Restituisce i punti di interesse salvati nel profilo utente
      */
-    public List<Verificato> mieiPunti(int id) {
+    public List<PuntoDiInteresse> mieiPunti(int id) {
         List<Integer> listaPunti = (userRepo.findById(id)).getIdPuntiDiInteresse();
         return puntoDiInteresseRepo.findAllById(listaPunti);
     }
@@ -107,8 +107,6 @@ public class UserService{
         user.setRuolo(ruolo);
         userRepo.deleteById(idUtente);
         return userRepo.save(user);
-
-
     }
     /*
     Metodo utility che presa una lista di utenti (id) rimuove dalla lista gli utenti non più presenti nella piattaforma

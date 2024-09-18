@@ -12,21 +12,16 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("admin")
-public class AdminController extends TuristaAutenticatoController {
+public class AdminController {
+
+    protected final UserService userService;
 
     @Autowired
-    public AdminController(UserService userService,
-                           PuntoDiInteresseService puntoInteresseService,
-                           ItinerarioService itinerarioService,
-                           ContestService contestService,
-                           MediaService mediaService) {
-        super(puntoInteresseService,
-                itinerarioService,
-                userService,
-                contestService,
-                mediaService
-        );
+    public AdminController(UserService userService) {
+
+        this.userService = userService;
     }
+
     /*
     Aggiunta di un nuovo utente
      */
@@ -41,12 +36,12 @@ public class AdminController extends TuristaAutenticatoController {
     Ricerca degli utenti tramite username
      */
     @GetMapping("/usrnUtente/{username}")
-    public User usrnUtente(@PathVariable String username) {return userService.loadUserByUsername(username);}
+    public User findByUsername(@PathVariable String username) {return userService.findByUsername(username);}
     /*
     Ricerca tramite id
      */
     @GetMapping("/utente/{id}")
-    public User utente(@PathVariable int id) {return userService.findUserById(id);}
+    public User findById(@PathVariable int id) {return userService.findById(id);}
     /*
     Eliminazione di un utente tramite id
      */

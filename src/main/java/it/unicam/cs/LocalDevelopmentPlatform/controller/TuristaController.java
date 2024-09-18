@@ -32,12 +32,12 @@ public class TuristaController {
     Visualizza tutti i punti di interesse esistenti
      */
     @GetMapping("/punti")
-    public List<PuntoDiInteresse> getAllPunti() { return puntoDiInteresseService.getAllPuntiVerificati(); }
+    public List<PuntoDiInteresse> puntiVerificati() { return puntoDiInteresseService.getAllPuntiVerificati(); }
     /*
     Visualizza un punto di interesse tramite id
      */
     @GetMapping("/punto/{id}")
-    public PuntoDiInteresse getPuntoById(@PathVariable int id) {
+    public PuntoDiInteresse getPuntoId(@PathVariable int id) {
         return puntoDiInteresseService.getPuntoById(id);
     }
     /*
@@ -51,7 +51,7 @@ public class TuristaController {
     Visualizza un itinerario tramite id
      */
     @GetMapping("/itinerario/{id}")
-    public List<PuntoDiInteresse> getItinerarioByID(@PathVariable int id) {
+    public List<PuntoDiInteresse> getItinerarioID(@PathVariable int id) {
         return itinerarioService.getPuntiItinerario(id);
     }
     /*

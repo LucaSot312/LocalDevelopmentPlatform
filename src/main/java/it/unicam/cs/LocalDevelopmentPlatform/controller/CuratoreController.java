@@ -36,7 +36,7 @@ public class CuratoreController extends ContributorController{
     Eliminazione di un itinerario tramite id
      */
     @PutMapping("/eliminaItinerario/{id}")
-    public boolean eliminaItinerario(@PathVariable int id){return itinerarioService.deleteItinerario(id);}
+    public boolean eliminaItinerario(@PathVariable int id){return itinerarioService.eliminaItinerario(id);}
     /*
     Elimina un media dato l'id
      */
@@ -46,7 +46,7 @@ public class CuratoreController extends ContributorController{
     Visualizza tutti i punti di interesse non verificati
      */
     @GetMapping("/nonVerificati")
-    public List<PuntoDiInteresse> getAllNotVerified(){return puntoDiInteresseService.getAllPuntiNonVerificati(); }
+    public List<PuntoDiInteresse> puntiNonVerificati(){return puntoDiInteresseService.getAllPuntiNonVerificati(); }
     /*
     Verifica un punto di interesse tramite id
      */
@@ -56,7 +56,7 @@ public class CuratoreController extends ContributorController{
     Visualizza i punti di interesse segnalati
      */
     @GetMapping("/segnalati")
-    public List<PuntoDiInteresse> segnalati(){return puntoDiInteresseService.getSegnalati(); }
+    public List<PuntoDiInteresse> puntiSegnalati(){return puntoDiInteresseService.getSegnalati(); }
     /*
     Rimuovi la segnalazione di un punto di interesse tramite id
      */
