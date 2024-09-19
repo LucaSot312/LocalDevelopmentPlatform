@@ -9,6 +9,7 @@ Classe Repository per la gestione degli itinerari
  */
 @Repository
 public interface ItinerarioRepo extends MongoRepository<Itinerario, Integer>{
+
     @Query("{ '_id' : ?0 }")
     Itinerario findById(int id);
 }

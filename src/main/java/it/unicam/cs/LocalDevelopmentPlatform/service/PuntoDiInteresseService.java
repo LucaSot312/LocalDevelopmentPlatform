@@ -89,8 +89,9 @@ public class PuntoDiInteresseService {
         }
     }
     /*
-    Metodo per la segnalazione di un punto di interesse: crea una copia del punto in questione, chiama il metodo segnala()
-    con associato il motivo della segnalazione e reinserisce il nuovo punto di interesse segnalato sul db
+    Metodo per la segnalazione di un punto di interesse: crea una copia del punto in questione,
+    chiama il metodo segnala() con associato il motivo della segnalazione e reinserisce il nuovo
+    punto di interesse segnalato sul db
      */
     public PuntoDiInteresse segnalaPunto(int id, String motivo) {
         PuntoDiInteresse temp=puntoDiInteresseRepo.findById(id);
@@ -106,7 +107,7 @@ public class PuntoDiInteresseService {
     Restituisce tutti i punti di interesse segnalati
      */
     public List<PuntoDiInteresse> getSegnalati() {
-        return puntoDiInteresseRepo.allSegnalati();
+        return puntoDiInteresseRepo.puntiSegnalati();
     }
 
     /*

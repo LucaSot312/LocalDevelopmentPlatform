@@ -23,14 +23,12 @@ public class UserService{
     private final UserRepo userRepo;
     private final PuntoDiInteresseRepo puntoDiInteresseRepo;
     private final ItinerarioRepo itinerarioRepo;
-    private final ItinerarioService itinerarioService;
 
     @Autowired
     public UserService(UserRepo userRepo, PuntoDiInteresseRepo puntoDiInteresseRepo, ItinerarioRepo itinerarioRepo, ItinerarioService itinerarioService) {
         this.userRepo = userRepo;
         this.puntoDiInteresseRepo = puntoDiInteresseRepo;
         this.itinerarioRepo = itinerarioRepo;
-        this.itinerarioService = itinerarioService;
     }
     /*
     Restituisce un utente dato l'username

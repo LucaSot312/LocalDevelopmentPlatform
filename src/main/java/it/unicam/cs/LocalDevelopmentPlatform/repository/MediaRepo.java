@@ -9,7 +9,8 @@ import java.util.List;
 
 @Repository
 public interface MediaRepo extends MongoRepository<Media, Integer> {
-    @Query("{ idPuntoDiInteresse: { $in: ?0 }, idContest: ?1 }")
-    List<Media> findBy_idPuntoDiInteresseInAnd_idContest(List<Integer> puntoDiInteresseIds, int contestId);
+
+    @Query("{ _idPuntoDiInteresse: { $in: ?0 }, _id: ?1 }")
+    List<Media> findById(List<Integer> idPuntoDiInteresse, int contestId);
 
 }
