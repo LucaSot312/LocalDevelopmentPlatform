@@ -1,13 +1,18 @@
 package it.unicam.cs.LocalDevelopmentPlatform.luoghi;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Objects;
 
+@Document(collection = "PuntoDiInteresse")
 public class PuntoDiInteresse {
 
+    private int _id;
     private State stato;
 
-    public PuntoDiInteresse(State stato) {
-        this.stato = stato;
+    public PuntoDiInteresse(Coordinata coordinata, String nome, TipologiaPunto tipologia, String descrizione){
+        this.stato = new NonVerificato(coordinata, nome, tipologia, descrizione);
+        this._id =  Math.abs(hashCode());
     }
 
     public PuntoDiInteresse verifica() {
@@ -31,6 +36,18 @@ public class PuntoDiInteresse {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(stato);
+        return stato.hashCode();
+    }
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
+    }
+
+    public void setStato(State stato) {
+        this.stato = stato;
     }
 }

@@ -1,19 +1,19 @@
 package it.unicam.cs.LocalDevelopmentPlatform.luoghi;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 /*
 Entity class per la rappresentazione di un punto di interesse verificato
  */
-@Document(collection = "PuntoDiInteresse")
+@JsonTypeName("verificato")
 public class Verificato extends State {
     private boolean segnalato;
     private String motivoSegnalazione;
 
     public Verificato(Coordinata coordinata, String nome, TipologiaPunto tipologia, String descrizione) {
-        super(coordinata, nome, tipologia, descrizione);
+       super(coordinata, nome, tipologia, descrizione);
         this.segnalato = false;
         this.motivoSegnalazione = "";
-        super.set_id(Math.abs(super.hashCode()));
     }
 
     public void setSegnalato(boolean segnalato) {
