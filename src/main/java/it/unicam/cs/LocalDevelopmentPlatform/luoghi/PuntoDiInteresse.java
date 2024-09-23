@@ -1,18 +1,26 @@
 package it.unicam.cs.LocalDevelopmentPlatform.luoghi;
 
+import jakarta.persistence.Id;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
 
 @Document(collection = "PuntoDiInteresse")
 public class PuntoDiInteresse {
+    @Id
+    private int  _id;
 
-    private int _id;
     private State stato;
 
-    public PuntoDiInteresse(Coordinata coordinata, String nome, TipologiaPunto tipologia, String descrizione){
-        this.stato = new NonVerificato(coordinata, nome, tipologia, descrizione);
-        this._id =  Math.abs(hashCode());
+    // Costruttore di default necessario per deserializzazione JSON
+    public PuntoDiInteresse() {
+    }
+
+    // Costruttore custom
+    public PuntoDiInteresse(PuntoDiInteresse punto) {
+        this.stato = new NonVerificato(punto.getStato().coordinata, punto.getStato().nome, punto.getStato().tipologia, punto.getStato().descrizione);
+        this._id = punto.getStato().hashCode();
     }
 
     public PuntoDiInteresse verifica() {
@@ -36,7 +44,7 @@ public class PuntoDiInteresse {
 
     @Override
     public int hashCode() {
-        return stato.hashCode();
+        return this.stato.hashCode();
     }
 
     public int get_id() {
@@ -49,5 +57,14 @@ public class PuntoDiInteresse {
 
     public void setStato(State stato) {
         this.stato = stato;
+    }
+
+
+    @Override
+    public String toString() {
+        return "PuntoDiInteresse{" +
+                "_id=" + _id +
+                stato.toString()+
+                '}';
     }
 }

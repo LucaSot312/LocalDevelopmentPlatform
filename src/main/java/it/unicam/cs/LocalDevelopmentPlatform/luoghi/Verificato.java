@@ -40,4 +40,39 @@ public class Verificato extends State {
     public void setMotivoSegnalazione(String motivoSegnalazione) {
         this.motivoSegnalazione = motivoSegnalazione;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public Coordinata getCoordinata() {
+        return super.getCoordinata();
+    }
+
+    @Override
+    public String getNome() {
+        return super.getNome();
+    }
+
+    @Override
+    public TipologiaPunto getTipologia() {
+        return super.getTipologia();
+    }
+
+    @Override
+    public String getDescrizione() {
+        return super.getDescrizione();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

@@ -5,11 +5,19 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.Objects;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-
 /*
-Entity class per la rappresentazione di un punto di interesse appena inserito dall'utente, quindi ancora da verificare
+Classe astratta per la rappresentazione dello stato di un punto di interesse,
+funzionale all'applicazione del design patter STATE
  */
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type"
+)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Verificato.class, name = "verificato"),
+        @JsonSubTypes.Type(value = NonVerificato.class, name = "nonVerificato")
+})
 public abstract class State {
 
     protected Coordinata coordinata;
@@ -34,7 +42,7 @@ public abstract class State {
 
     @Override
     public int hashCode() {
-        return Objects.hash(coordinata, nome, tipologia, descrizione);
+        return Objects.hash(this.coordinata, this.nome, this.tipologia, this.descrizione);
     }
 
     public Coordinata getCoordinata() {return coordinata; }
@@ -45,6 +53,15 @@ public abstract class State {
 
     public String getDescrizione() {return descrizione; }
 
+    @Override
+    public String toString() {
+        return "State{" +
+                "coordinata=" + coordinata +
+                ", nome='" + nome + '\'' +
+                ", tipologia=" + tipologia +
+                ", descrizione='" + descrizione + '\'' +
+                '}';
+    }
 }
 
 

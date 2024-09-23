@@ -29,7 +29,7 @@ public class ContributorController extends TuristaAutenticatoController {
      */
     @PostMapping(value = "/caricaPunto")
     public PuntoDiInteresse caricaPunto(@RequestBody PuntoDiInteresse punto) {
-        System.out.println(punto);
+        System.out.println("ID PUNTO: "+punto.get_id());
         return puntoDiInteresseService.salvaPunto(punto);
 
     }
