@@ -1,7 +1,8 @@
 package it.unicam.cs.LocalDevelopmentPlatform.luoghi;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Id;
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
@@ -13,14 +14,12 @@ public class PuntoDiInteresse {
 
     private State stato;
 
-    // Costruttore di default necessario per deserializzazione JSON
-    public PuntoDiInteresse() {
-    }
-
     // Costruttore custom
-    public PuntoDiInteresse(PuntoDiInteresse punto) {
-        this.stato = new NonVerificato(punto.getStato().coordinata, punto.getStato().nome, punto.getStato().tipologia, punto.getStato().descrizione);
-        this._id = punto.getStato().hashCode();
+    @JsonCreator
+    public PuntoDiInteresse(@JsonProperty("stato")State stato)
+    {
+        this.stato = stato;
+        this._id = Math.abs(hashCode());
     }
 
     public PuntoDiInteresse verifica() {
@@ -30,9 +29,6 @@ public class PuntoDiInteresse {
                 this.stato.getTipologia(),
                 this.stato.getDescrizione());
         return this;
-    }
-    public State getStato() {
-        return stato;
     }
 
     @Override
@@ -59,6 +55,9 @@ public class PuntoDiInteresse {
         this.stato = stato;
     }
 
+    public State getStato() {
+        return this.stato;
+    }
 
     @Override
     public String toString() {

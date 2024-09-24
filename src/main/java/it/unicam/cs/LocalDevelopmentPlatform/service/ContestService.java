@@ -60,6 +60,7 @@ public class ContestService {
     Determina il vincitore di un contest
     */
     public List<Integer> determinaVincitore(int idContest) {
+
         Contest contest= contestRepo.findById(idContest);
         List<Media> mediaContributions = mediaRepo.findAll();
         List<Integer> listaPartecipanti = contest.getListaPartecipanti();

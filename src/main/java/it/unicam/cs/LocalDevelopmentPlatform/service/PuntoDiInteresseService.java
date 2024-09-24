@@ -124,6 +124,8 @@ public class PuntoDiInteresseService {
     }
 
     public PuntoDiInteresse verificaPunto(int id) {
-        return puntoDiInteresseRepo.findById(id).verifica();
+        PuntoDiInteresse verificato = puntoDiInteresseRepo.findById(id).verifica();
+        puntoDiInteresseRepo.deleteById(id);
+        return puntoDiInteresseRepo.save(verificato);
     }
 }

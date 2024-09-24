@@ -25,7 +25,7 @@ public class Itinerario {
         this.nome = nome;
         this.itinerario = itinerario;
         this.descrizione = descrizione;
-        this.id = this.hashCode();
+        this.id = Math.abs(this.hashCode());
     }
 
     @Override

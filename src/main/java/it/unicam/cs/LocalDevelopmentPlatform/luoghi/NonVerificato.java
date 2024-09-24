@@ -45,4 +45,24 @@ public class NonVerificato extends State {
     public String toString() {
         return super.toString();
     }
+
+    @Override
+    public void setCoordinata(Coordinata coordinata) {
+        super.setCoordinata(coordinata);
+    }
+
+    @Override
+    public void setNome(String nome) {
+        super.setNome(nome);
+    }
+
+    @Override
+    public void setTipologia(TipologiaPunto tipologia) {
+        super.setTipologia(tipologia);
+    }
+
+    @Override
+    public void setDescrizione(String descrizione) {
+        super.setDescrizione(descrizione);
+    }
 }

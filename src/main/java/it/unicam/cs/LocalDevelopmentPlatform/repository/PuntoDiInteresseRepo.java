@@ -19,7 +19,7 @@ public interface PuntoDiInteresseRepo extends MongoRepository<PuntoDiInteresse, 
     /*
     Ottieni tutti i punti di interesse segnalati
      */
-    @Query("{'segnalato' : true}")
+    @Query("{'stato.segnalato' : true}")
     List<PuntoDiInteresse> puntiSegnalati();
 
 }
