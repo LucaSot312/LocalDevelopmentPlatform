@@ -69,8 +69,8 @@ public class ItinerarioService {
     Cancella un itinerario dato l'id
      */
     public boolean eliminaItinerario(int id) {
-        puntoDiInteresseRepo.deleteById(id);
-        return !puntoDiInteresseRepo.existsById(id);
+        itinerarioRepo.deleteById(id);
+        return !itinerarioRepo.existsById(id);
     }
     /*
     Metodo utility che dato un id (punto di interesse) restituisce tutti gli itinerari (id) che contengono quel punto
